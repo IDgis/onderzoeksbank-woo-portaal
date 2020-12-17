@@ -7,12 +7,20 @@ import Header from './components/main/Header';
 import Home from './components/home/Home';
 import NotFound from './components/main/NotFound';
 import Report from './components/report/Report';
+import Search from './components/search/Search';
 
 import './index.css';
 
 const Main = () => {
 
-    const [activeTab, setActiveTab] = useState(window.location.href.split("/")[3] === "" ? "home" : window.location.href.split("/")[3]);
+    const path = window.location.href.split("/")[3];
+    const [activeTab, setActiveTab] = useState(path === "" ? "home" : path.substring(0, path.indexOf('?') === -1 ? path.length : path.indexOf('?')));
+
+    const setTab = (tabName) => {
+        if (tabName !== "report") {
+            setActiveTab(tabName);
+        }
+    }
 
     return (
         <div className="page">
@@ -22,11 +30,12 @@ const Main = () => {
             <Header activeTab={activeTab} />
             <div className="grid">
                 <Switch>
-                    <Route path="/" exact component={ (props) => <Home activeTab={activeTab} setActiveTab={setActiveTab} {...props} /> } />
-                    <Route path="/contact" exact component={ (props) => <Contact activeTab={activeTab} setActiveTab={setActiveTab} {...props} /> } />
+                    <Route path="/" exact component={ (props) => <Home activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
+                    <Route path="/search" exact component={ (props) => <Search activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
+                    <Route path="/contact" exact component={ (props) => <Contact activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
                     <Route path="/report/:reportUUID" exact component={ (props) => <Report activeTab={activeTab} {...props} /> } />
-                    <Route path="/404" exact component={ (props) => <NotFound activeTab={activeTab} setActiveTab={setActiveTab} {...props} /> } />
-                    <Route component={ (props) => <NotFound activeTab={activeTab} setActiveTab={setActiveTab} {...props} /> } />
+                    <Route path="/404" exact component={ (props) => <NotFound activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
+                    <Route component={ (props) => <NotFound activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
                 </Switch>
             </div>
         </div>

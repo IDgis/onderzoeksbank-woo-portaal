@@ -226,9 +226,39 @@ a.md-title:hover {
     text-decoration: underline;
 }
 
+#js-search-results-all {
+    overflow: auto;
+}
+
+.data-control {
+    margin: 10px 0 10px -15px;
+    overflow: auto;
+}
+
+.page-information {
+    margin-left: 15px;
+}
+
+.display-options {
+    margin-top: 10px;
+}
+
+#expand-area {
+    margin-top: 5px;
+}
+
 #home-icon, #search-icon, #browse-icon, #about-icon, #contact-icon {
     background-position: 15px 15px;
     background-size: 25px;
+}
+
+#pager-adjusted {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.paging-disabled {
+    pointer-events: none;
 }
 
 .blok {
