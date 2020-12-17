@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import ReportsList from './ReportsList';
+import ReportsList from '../reportslist/ReportsList';
 import withTabs from '../main/withTabs';
 
 const Home = ({activeTab, setActiveTab}) => {
@@ -76,7 +76,7 @@ const Home = ({activeTab, setActiveTab}) => {
                     </span>
                 </div>
             </div>
-            <ReportsList reports={reports} setActiveTab={setActiveTab} />
+            <ReportsList records={reports.records} setActiveTab={setActiveTab} expand={true} />
         </div>
     );
 };

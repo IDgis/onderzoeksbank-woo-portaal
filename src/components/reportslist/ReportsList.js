@@ -2,9 +2,9 @@ import React from 'react';
 
 import Report from './Report';
 
-const ReportsList = ({reports, setActiveTab}) => (
+const ReportsList = ({records, setActiveTab, expand}) => (
     <div className="col-md-11 col-md-offset-1">
-        {reports.records?.map(report => (
+        {records?.map(report => (
             <Report
                 key={report.uuid}
                 titel={report.titel}
@@ -13,6 +13,7 @@ const ReportsList = ({reports, setActiveTab}) => (
                 datum={report.datumPublicatie}
                 eindverantwoordelijke={report.eindverantwoordelijke}
                 setActiveTab={setActiveTab}
+                expand={expand}
             />
         ))}
     </div>
