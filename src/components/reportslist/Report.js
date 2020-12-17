@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Report = ({titel, omschrijving, reportUUID, datum, eindverantwoordelijke, setActiveTab}) => (
+const Report = ({titel, omschrijving, reportUUID, datum, eindverantwoordelijke, setActiveTab, expand}) => (
     <div className="home-metadata">
         <div className="row">
             <div className="col-md-12">
@@ -11,6 +11,7 @@ const Report = ({titel, omschrijving, reportUUID, datum, eindverantwoordelijke, 
                     </Link>
                 </p>
             </div>
+            {expand &&
             <div className="col-md-12">
                 <p>
                     {omschrijving}
@@ -19,6 +20,7 @@ const Report = ({titel, omschrijving, reportUUID, datum, eindverantwoordelijke, 
                     Meer informatie
                 </Link>
             </div>
+            }
         </div>
     </div>
 );

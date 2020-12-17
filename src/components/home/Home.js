@@ -2,21 +2,31 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import ReportsList from './ReportsList';
+import ReportsList from '../reportslist/ReportsList';
 import withTabs from '../main/withTabs';
 
 const Home = ({activeTab, setActiveTab}) => {
 
     const [reports, setReports] = useState({});
+    const [filter, setFilter] = useState("");
     const searchRef = useRef(null);
-    const cancelTokenSource = axios.CancelToken.source();
 
     useEffect(async () => {
+        const cancelTokenSource = axios.CancelToken.source();
+        
         try {
             const response = await axios.get(`${process.env.REACT_APP_API_HOST}/report/query?sort=dateDesc&limit=5`, {
                 cancelToken: cancelTokenSource.token
             });
-            setReports(response.data);
+
+            if (filter !== "") {
+                const filteredReports = response.data.records.filter(record =>
+                    record.titel.indexOf(filter) !== -1 || record.omschrijving.indexOf(filter) !== -1);
+                
+                    setReports({count: filteredReports.length, records: filteredReports});
+            } else {
+                setReports(response.data);
+            }
         } catch (err) {
             console.log(err);
         }
@@ -24,23 +34,11 @@ const Home = ({activeTab, setActiveTab}) => {
         return () => {
             cancelTokenSource.cancel();
         };
-    }, []);
+    }, [filter]);
 
     const filterReports = async (e) => {
         e.preventDefault();
-
-        try {
-            const searchText = searchRef.current.value;
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/report/query?sort=dateDesc&limit=5`, {
-                cancelToken: cancelTokenSource.token
-            });
-            const filteredReports = response.data.records.filter(record =>
-                record.titel.indexOf(searchText) !== -1 || record.omschrijving.indexOf(searchText) !== -1);
-            
-            setReports({count: filterReports.length, records: filteredReports});
-        } catch (err) {
-            console.log(err);
-        }
+        setFilter(searchRef.current.value);
     };
 
 
@@ -76,7 +74,7 @@ const Home = ({activeTab, setActiveTab}) => {
                     </span>
                 </div>
             </div>
-            <ReportsList reports={reports} setActiveTab={setActiveTab} />
+            <ReportsList records={reports.records} setActiveTab={setActiveTab} expand={true} />
         </div>
     );
 };
