@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import PageDisplayOptions from '../page/PageDisplayOptions';
+import PageInformation from '../page/PageInformation';
+import PageNavigation from '../page/PageNavigation';
 import ReportsList from '../reportslist/ReportsList';
+import SearchForm from './SearchForm';
+import Subject from './Subject';
 import withTabs from '../main/withTabs';
 
 const Search = ({setActiveTab}) => {
@@ -16,6 +20,41 @@ const Search = ({setActiveTab}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [expanded, setExpanded] = useState(true);
     const [filter, setFilter] = useState("");
+    const [subjects, setSubjects] = useState([]);
+
+    useEffect(() => {
+        const subjectList = {
+            "inlandwaters": "Binnenwater",
+            "structure" : "Civiele structuren",
+            "society": "Cultuur, maatschappij en demografie",
+            "economy": "Economie",
+            "biota": "Flora en fauna",
+            "geoscientificInformation": "Geowetenschappelijke data",
+            "health": "Gezondheid",
+            "boundaries": "Grenzen",
+            "elevation": "Hoogte",
+            "climatologyMeteorologyAtmosphere": "Klimatologie, metereologie en atmosfeer",
+            "farming": "Landbouw en veeteelt",
+            "location": "Locatie",
+            "intelligenceMilitary": "Militair",
+            "environment": "Natuur en milieu",
+            "utilitiesCommunication": "Nutsvoorzieningen en communicatie",
+            "oceans": "Oceanen",
+            "imageryBaseMapsEarthCover": "Referentiemateriaal aardbedekking",
+            "planningCadastre": "Ruimtelijke ordening en kadaster",
+            "transportation": "Transport en logistiek"
+        };
+
+        const subjectArr = [];
+        for (const s in subjectList) {
+            subjectArr.push({
+                "id": s,
+                "title": subjectList[s],
+                "checked": true
+            });
+        }
+        setSubjects(subjectArr);
+    }, []);
 
     useEffect(async () => {
         const cancelTokenSource = axios.CancelToken.source();
@@ -37,98 +76,73 @@ const Search = ({setActiveTab}) => {
         return () => {
             cancelTokenSource.cancel();
         };
-    }, [currentPage, filter]);
+    }, [currentPage, filter, subjects]);
 
-    const setSearchFilter = (e) => {
-        e.preventDefault();
-        setFilter(searchRef.current.value);
+    const selectAllSubjects = () => {
+        setSubjects(s => s.map(sub => {
+            sub.checked = true;
+            return sub;
+        }));
     };
 
-    const isGetFirstPageEnabled = () => {
-        return currentPage !== 1;
-    }
-
-    const isGetLastPageEnabled = () => {
-        return currentPage < maxPages;
-    }
-
-    const getFirstPage = () => {
-        setCurrentPage(1);
+    const deselectAllSubjects = () => {
+        setSubjects(s => s.map(sub => {
+            sub.checked = false;
+            return sub;
+        }));
     };
 
-    const getPreviousPage = () => {
-        setCurrentPage(page => page - 1);
-    }
-
-    const getNextPage = () => {
-        setCurrentPage(page => page + 1);
-    }
-
-    const getLastPage = () => {
-        setCurrentPage(maxPages);
-    }
-
-    const handleExpand = () => {
-        setExpanded(expand => !expand);
+    const handleSubjectChange = (subjectId) => {
+        setSubjects(s => s.map(sub => {
+            if (sub.id === subjectId) {
+                sub.checked = !sub.checked;
+            }
+            return sub;
+        }));
     };
 
     return (
-        <div>
+        <>
             <div className="intro">
                 <p>
-                    Zoek naar rapporten.
+                    Zoek naar rapporten en maak eventueel gebruik van één of meerdere trefwoorden.
                 </p>
             </div>
-            <form className="search-bar" onSubmit={setSearchFilter}>
-                <div className="form-group">
-                    <span className="search-label">Zoek</span>
-                </div>
-                <div className="form-group">
-                    <input className="form-control search-field" type="text" placeholder="Zoek op term" name="text" ref={searchRef} />
-                </div>
-                <div className="form-group">
-                    <button id="search-button" className="button-ovs" type="submit">Zoek</button>
-                </div>
-            </form>
+            <SearchForm setFilter={setFilter} ref={searchRef} />
             <div id="js-search-results-all">
-                <div className="data-control">
-                    <div className="pull-left">
-                        <div className="page-information">
-                            <span>{numResults} resultaten, pagina {currentPage}</span>
+                <div className="col-md-12">
+                    <div className="data-control">
+                        <div className="pull-left">
+                            <PageInformation numResults={numResults} currentPage={currentPage} />
                         </div>
-                    </div>
-                    <div className="pull-right">
-                        <div id="nav-top">
-                            <nav>
-                                <ul id="pager-adjusted" className="pager">
-                                    <li className={isGetFirstPageEnabled() ? "" : "disabled paging-disabled"}>
-                                        <Link className="js-nav-button" to="/search" onClick={getFirstPage}>Eerste pagina</Link>&nbsp;
-                                    </li>
-                                    <li className={isGetFirstPageEnabled() ? "" : "disabled paging-disabled"}>
-                                        <Link className="js-nav-button" to={`/search`} onClick={getPreviousPage}>Vorige pagina</Link>&nbsp;
-                                    </li>
-                                    <li className={isGetLastPageEnabled() ? "" : "disabled paging-disabled"}>
-                                        <Link className="js-nav-button" to="/search" onClick={getNextPage}>Volgende pagina</Link>&nbsp;
-                                    </li>
-                                    <li className={isGetLastPageEnabled() ? "" : "disabled paging-disabled"}>
-                                        <Link className="js-nav-button" to={`/search`} onClick={getLastPage}>Laatste pagina ({maxPages})</Link>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <div className="display-options">
-                            <div id="expand-area">
-                                <label className="checkbox-inline">
-                                    <input id="js-expand-all" className="js-expand-all-evt" type="checkbox" checked={expanded} onChange={handleExpand} />
-                                    <span id="js-label-expand-all">Resultaten uitklappen</span>
-                                </label>
+                        <div className="pull-right">
+                            <div id="nav-top">
+                                <PageNavigation currentPage={currentPage} setCurrentPage={setCurrentPage} maxPages={maxPages} />
                             </div>
+                            <PageDisplayOptions expanded={expanded} setExpanded={setExpanded} />
                         </div>
                     </div>
                 </div>
-                <ReportsList records={reports.records} setActiveTab={setActiveTab} expand={expanded} />
+                <div id="header-subjects" className="row">
+                    <div className="col-md-12">
+                        <span id="browse-info">Trefwoorden (groepen) waar je uit kan kiezen:</span>
+                    </div>
+                </div>
+                <div className="row">
+                    <div id="subjects-list" className="col-md-4">
+                        <div id="subject-selection-buttons">
+                            <button className="button-ovs js-subject-select-all" type="button" onClick={selectAllSubjects}>Alles selecteren</button>&nbsp;
+                            <button className="button-ovs js-subject-select-none" type="button" onClick={deselectAllSubjects}>Niets selecteren</button>
+                        </div>
+                        { subjects.map(subject => <Subject key={subject.id} subjectId={subject.id} subjectTitle={subject.title} isChecked={subject.checked} handleChange={handleSubjectChange} />) }
+                    </div>
+                    <ReportsList records={reports.records} setActiveTab={setActiveTab} classNames="col-md-7" expand={expanded} />
+                    <div id="nav-bottom" className="col-md-7 col-md-offset-4">
+                        <PageNavigation currentPage={currentPage} setCurrentPage={setCurrentPage} maxPages={maxPages} />
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

@@ -11,7 +11,6 @@ const withTabs = (OriginalComponent) => {
                     <div className="tabs">
                         <Tab hrefPath="/" isActive={activeTab === "home"} name="home" title="Home" setActiveTab={setActiveTab} />
                         <Tab hrefPath="/search" isActive={activeTab === "search"} name="search" title="Uitgebreid zoeken" setActiveTab={setActiveTab} />
-                        <Tab hrefPath="/browse" isActive={activeTab === "browse"} name="browse" title="Bladeren" setActiveTab={setActiveTab} />
                         <Tab hrefPath="/about" isActive={activeTab === "about"} name="about" title="Over deze site" setActiveTab={setActiveTab} />
                         <Tab hrefPath="/contact" isActive={activeTab === "contact"} name="contact" title="Contact" setActiveTab={setActiveTab} />
                     </div>
