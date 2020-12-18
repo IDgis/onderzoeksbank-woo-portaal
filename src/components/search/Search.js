@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import PageDisplayOptions from '../page/PageDisplayOptions';
+import PageInformation from '../page/PageInformation';
+import PageNavigation from '../page/PageNavigation';
 import ReportsList from '../reportslist/ReportsList';
+import SearchForm from './SearchForm';
 import withTabs from '../main/withTabs';
 
 const Search = ({setActiveTab}) => {
@@ -39,39 +42,6 @@ const Search = ({setActiveTab}) => {
         };
     }, [currentPage, filter]);
 
-    const setSearchFilter = (e) => {
-        e.preventDefault();
-        setFilter(searchRef.current.value);
-    };
-
-    const isGetFirstPageEnabled = () => {
-        return currentPage !== 1;
-    }
-
-    const isGetLastPageEnabled = () => {
-        return currentPage < maxPages;
-    }
-
-    const getFirstPage = () => {
-        setCurrentPage(1);
-    };
-
-    const getPreviousPage = () => {
-        setCurrentPage(page => page - 1);
-    }
-
-    const getNextPage = () => {
-        setCurrentPage(page => page + 1);
-    }
-
-    const getLastPage = () => {
-        setCurrentPage(maxPages);
-    }
-
-    const handleExpand = () => {
-        setExpanded(expand => !expand);
-    };
-
     return (
         <>
             <div className="intro">
@@ -79,52 +49,16 @@ const Search = ({setActiveTab}) => {
                     Zoek naar rapporten en maak eventueel gebruik van één of meerdere trefwoorden.
                 </p>
             </div>
-            <form className="search-bar" onSubmit={setSearchFilter}>
-                <div className="form-group">
-                    <span className="search-label">Zoek</span>
-                </div>
-                <div className="form-group">
-                    <input className="form-control search-field" type="text" placeholder="Zoek op term" name="text" ref={searchRef} />
-                </div>
-                <div className="form-group">
-                    <button id="search-button" className="button-ovs" type="submit">Zoek</button>
-                </div>
-            </form>
+            <SearchForm setFilter={setFilter} ref={searchRef} />
             <div id="js-search-results-all">
                 <div className="col-md-12">
                     <div className="data-control">
                         <div className="pull-left">
-                            <div className="page-information">
-                                <span>{numResults} resultaten, pagina {currentPage}</span>
-                            </div>
+                            <PageInformation numResults={numResults} currentPage={currentPage} />
                         </div>
                         <div className="pull-right">
-                            <div id="nav-top">
-                                <nav>
-                                    <ul id="pager-adjusted" className="pager">
-                                        <li className={isGetFirstPageEnabled() ? "" : "disabled paging-disabled"}>
-                                            <Link className="js-nav-button" to="/search" onClick={getFirstPage}>Eerste pagina</Link>&nbsp;
-                                        </li>
-                                        <li className={isGetFirstPageEnabled() ? "" : "disabled paging-disabled"}>
-                                            <Link className="js-nav-button" to={`/search`} onClick={getPreviousPage}>Vorige pagina</Link>&nbsp;
-                                        </li>
-                                        <li className={isGetLastPageEnabled() ? "" : "disabled paging-disabled"}>
-                                            <Link className="js-nav-button" to="/search" onClick={getNextPage}>Volgende pagina</Link>&nbsp;
-                                        </li>
-                                        <li className={isGetLastPageEnabled() ? "" : "disabled paging-disabled"}>
-                                            <Link className="js-nav-button" to={`/search`} onClick={getLastPage}>Laatste pagina ({maxPages})</Link>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                            <div className="display-options">
-                                <div id="expand-area">
-                                    <label className="checkbox-inline">
-                                        <input id="js-expand-all" className="js-expand-all-evt" type="checkbox" checked={expanded} onChange={handleExpand} />
-                                        <span id="js-label-expand-all">Resultaten uitklappen</span>
-                                    </label>
-                                </div>
-                            </div>
+                            <PageNavigation currentPage={currentPage} setCurrentPage={setCurrentPage} maxPages={maxPages} />
+                            <PageDisplayOptions expanded={expanded} setExpanded={setExpanded} />
                         </div>
                     </div>
                 </div>
