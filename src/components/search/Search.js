@@ -73,10 +73,10 @@ const Search = ({setActiveTab}) => {
     };
 
     return (
-        <div>
+        <>
             <div className="intro">
                 <p>
-                    Zoek naar rapporten.
+                    Zoek naar rapporten en maak eventueel gebruik van één of meerdere trefwoorden.
                 </p>
             </div>
             <form className="search-bar" onSubmit={setSearchFilter}>
@@ -91,44 +91,71 @@ const Search = ({setActiveTab}) => {
                 </div>
             </form>
             <div id="js-search-results-all">
-                <div className="data-control">
-                    <div className="pull-left">
-                        <div className="page-information">
-                            <span>{numResults} resultaten, pagina {currentPage}</span>
+                <div className="col-md-12">
+                    <div className="data-control">
+                        <div className="pull-left">
+                            <div className="page-information">
+                                <span>{numResults} resultaten, pagina {currentPage}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div className="pull-right">
-                        <div id="nav-top">
-                            <nav>
-                                <ul id="pager-adjusted" className="pager">
-                                    <li className={isGetFirstPageEnabled() ? "" : "disabled paging-disabled"}>
-                                        <Link className="js-nav-button" to="/search" onClick={getFirstPage}>Eerste pagina</Link>&nbsp;
-                                    </li>
-                                    <li className={isGetFirstPageEnabled() ? "" : "disabled paging-disabled"}>
-                                        <Link className="js-nav-button" to={`/search`} onClick={getPreviousPage}>Vorige pagina</Link>&nbsp;
-                                    </li>
-                                    <li className={isGetLastPageEnabled() ? "" : "disabled paging-disabled"}>
-                                        <Link className="js-nav-button" to="/search" onClick={getNextPage}>Volgende pagina</Link>&nbsp;
-                                    </li>
-                                    <li className={isGetLastPageEnabled() ? "" : "disabled paging-disabled"}>
-                                        <Link className="js-nav-button" to={`/search`} onClick={getLastPage}>Laatste pagina ({maxPages})</Link>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <div className="display-options">
-                            <div id="expand-area">
-                                <label className="checkbox-inline">
-                                    <input id="js-expand-all" className="js-expand-all-evt" type="checkbox" checked={expanded} onChange={handleExpand} />
-                                    <span id="js-label-expand-all">Resultaten uitklappen</span>
-                                </label>
+                        <div className="pull-right">
+                            <div id="nav-top">
+                                <nav>
+                                    <ul id="pager-adjusted" className="pager">
+                                        <li className={isGetFirstPageEnabled() ? "" : "disabled paging-disabled"}>
+                                            <Link className="js-nav-button" to="/search" onClick={getFirstPage}>Eerste pagina</Link>&nbsp;
+                                        </li>
+                                        <li className={isGetFirstPageEnabled() ? "" : "disabled paging-disabled"}>
+                                            <Link className="js-nav-button" to={`/search`} onClick={getPreviousPage}>Vorige pagina</Link>&nbsp;
+                                        </li>
+                                        <li className={isGetLastPageEnabled() ? "" : "disabled paging-disabled"}>
+                                            <Link className="js-nav-button" to="/search" onClick={getNextPage}>Volgende pagina</Link>&nbsp;
+                                        </li>
+                                        <li className={isGetLastPageEnabled() ? "" : "disabled paging-disabled"}>
+                                            <Link className="js-nav-button" to={`/search`} onClick={getLastPage}>Laatste pagina ({maxPages})</Link>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div className="display-options">
+                                <div id="expand-area">
+                                    <label className="checkbox-inline">
+                                        <input id="js-expand-all" className="js-expand-all-evt" type="checkbox" checked={expanded} onChange={handleExpand} />
+                                        <span id="js-label-expand-all">Resultaten uitklappen</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <ReportsList records={reports.records} setActiveTab={setActiveTab} classNames="col-md-11 col-md-offset-1" expand={expanded} />
+                <div id="header-subjects" className="row">
+                    <div className="col-md-12">
+                        <span id="browse-info">Trefwoorden (groepen) waar je uit kan kiezen:</span>
+                    </div>
+                </div>
+                <div className="row">
+                    <div id="subjects-list" className="col-md-4">
+                        <div id="subject-selection-buttons">
+                            <button className="button-ovs js-subject-select-all" type="button">Alles selecteren</button>&nbsp;
+                            <button className="button-ovs js-subject-select-none" type="button">Niets selecteren</button>
+                        </div>
+                        <div>
+                            <label className="checkbox-inline">
+                                <input className="js-data-subject" data-md-subject="inlandwaters" type="checkbox" checked={true} />
+                                <span>Binnenwater</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label className="checkbox-inline">
+                                <input className="js-data-subject" data-md-subject="structure" type="checkbox" checked={true} />
+                                <span>Civiele structuren</span>
+                            </label>
+                        </div>
+                    </div>
+                    <ReportsList records={reports.records} setActiveTab={setActiveTab} classNames="col-md-7" expand={expanded} />
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

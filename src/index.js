@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Browse from './components/browse/Browse';
 import Contact from './components/contact/Contact';
 import Header from './components/main/Header';
 import Home from './components/home/Home';
@@ -33,7 +32,6 @@ const Main = () => {
                 <Switch>
                     <Route path="/" exact component={ (props) => <Home activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
                     <Route path="/search" exact component={ (props) => <Search activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
-                    <Route path="/browse" exact component={ (props) => <Browse activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
                     <Route path="/contact" exact component={ (props) => <Contact activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
                     <Route path="/report/:reportUUID" exact component={ (props) => <Report activeTab={activeTab} {...props} /> } />
                     <Route path="/404" exact component={ (props) => <NotFound activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
