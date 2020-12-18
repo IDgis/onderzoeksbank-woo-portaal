@@ -74,7 +74,7 @@ const Home = ({activeTab, setActiveTab}) => {
                     </span>
                 </div>
             </div>
-            <ReportsList records={reports.records} setActiveTab={setActiveTab} expand={true} />
+            <ReportsList records={reports.records} setActiveTab={setActiveTab} classNames="col-md-11 col-md-offset-1" expand={true} />
         </div>
     );
 };

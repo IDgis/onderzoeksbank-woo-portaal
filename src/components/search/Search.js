@@ -126,7 +126,7 @@ const Search = ({setActiveTab}) => {
                         </div>
                     </div>
                 </div>
-                <ReportsList records={reports.records} setActiveTab={setActiveTab} expand={expanded} />
+                <ReportsList records={reports.records} setActiveTab={setActiveTab} classNames="col-md-11 col-md-offset-1" expand={expanded} />
             </div>
         </div>
     );

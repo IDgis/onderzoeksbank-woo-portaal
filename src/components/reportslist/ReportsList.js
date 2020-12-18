@@ -2,8 +2,8 @@ import React from 'react';
 
 import Report from './Report';
 
-const ReportsList = ({records, setActiveTab, expand}) => (
-    <div className="col-md-11 col-md-offset-1">
+const ReportsList = ({records, setActiveTab, classNames, expand}) => (
+    <div className={classNames}>
         {records?.map(report => (
             <Report
                 key={report.uuid}
