@@ -228,7 +228,7 @@ a.md-title:hover {
 }
 
 #js-search-results-all {
-    overflow: auto;
+    /* overflow: auto; */
 }
 
 .data-control {

@@ -28,24 +28,22 @@ const PageNavigation = ({currentPage, setCurrentPage, maxPages}) => {
     }
 
     return (
-        <div id="nav-top">
-            <nav>
-                <ul id="pager-adjusted" className="pager">
-                    <li className={isGetFirstPageEnabled() ? "" : "disabled paging-disabled"}>
-                        <Link className="js-nav-button" to="/search" onClick={getFirstPage}>Eerste pagina</Link>&nbsp;
-                    </li>
-                    <li className={isGetFirstPageEnabled() ? "" : "disabled paging-disabled"}>
-                        <Link className="js-nav-button" to={`/search`} onClick={getPreviousPage}>Vorige pagina</Link>&nbsp;
-                    </li>
-                    <li className={isGetLastPageEnabled() ? "" : "disabled paging-disabled"}>
-                        <Link className="js-nav-button" to="/search" onClick={getNextPage}>Volgende pagina</Link>&nbsp;
-                    </li>
-                    <li className={isGetLastPageEnabled() ? "" : "disabled paging-disabled"}>
-                        <Link className="js-nav-button" to={`/search`} onClick={getLastPage}>Laatste pagina ({maxPages})</Link>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        <nav>
+            <ul id="pager-adjusted" className="pager">
+                <li className={isGetFirstPageEnabled() ? "" : "disabled paging-disabled"}>
+                    <Link className="js-nav-button" to="/search" onClick={getFirstPage}>Eerste pagina</Link>&nbsp;
+                </li>
+                <li className={isGetFirstPageEnabled() ? "" : "disabled paging-disabled"}>
+                    <Link className="js-nav-button" to={`/search`} onClick={getPreviousPage}>Vorige pagina</Link>&nbsp;
+                </li>
+                <li className={isGetLastPageEnabled() ? "" : "disabled paging-disabled"}>
+                    <Link className="js-nav-button" to="/search" onClick={getNextPage}>Volgende pagina</Link>&nbsp;
+                </li>
+                <li className={isGetLastPageEnabled() ? "" : "disabled paging-disabled"}>
+                    <Link className="js-nav-button" to={`/search`} onClick={getLastPage}>Laatste pagina ({maxPages})</Link>
+                </li>
+            </ul>
+        </nav>
     );
 };
 

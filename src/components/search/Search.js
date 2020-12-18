@@ -6,6 +6,7 @@ import PageInformation from '../page/PageInformation';
 import PageNavigation from '../page/PageNavigation';
 import ReportsList from '../reportslist/ReportsList';
 import SearchForm from './SearchForm';
+import Subject from './Subject';
 import withTabs from '../main/withTabs';
 
 const Search = ({setActiveTab}) => {
@@ -19,6 +20,41 @@ const Search = ({setActiveTab}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [expanded, setExpanded] = useState(true);
     const [filter, setFilter] = useState("");
+    const [subjects, setSubjects] = useState([]);
+
+    useEffect(() => {
+        const subjectList = {
+            "inlandwaters": "Binnenwater",
+            "structure" : "Civiele structuren",
+            "society": "Cultuur, maatschappij en demografie",
+            "economy": "Economie",
+            "biota": "Flora en fauna",
+            "geoscientificInformation": "Geowetenschappelijke data",
+            "health": "Gezondheid",
+            "boundaries": "Grenzen",
+            "elevation": "Hoogte",
+            "climatologyMeteorologyAtmosphere": "Klimatologie, metereologie en atmosfeer",
+            "farming": "Landbouw en veeteelt",
+            "location": "Locatie",
+            "intelligenceMilitary": "Militair",
+            "environment": "Natuur en milieu",
+            "utilitiesCommunication": "Nutsvoorzieningen en communicatie",
+            "oceans": "Oceanen",
+            "imageryBaseMapsEarthCover": "Referentiemateriaal aardbedekking",
+            "planningCadastre": "Ruimtelijke ordening en kadaster",
+            "transportation": "Transport en logistiek"
+        };
+
+        const subjectArr = [];
+        for (const s in subjectList) {
+            subjectArr.push({
+                "id": s,
+                "title": subjectList[s],
+                "checked": true
+            });
+        }
+        setSubjects(subjectArr);
+    }, []);
 
     useEffect(async () => {
         const cancelTokenSource = axios.CancelToken.source();
@@ -40,7 +76,30 @@ const Search = ({setActiveTab}) => {
         return () => {
             cancelTokenSource.cancel();
         };
-    }, [currentPage, filter]);
+    }, [currentPage, filter, subjects]);
+
+    const selectAllSubjects = () => {
+        setSubjects(s => s.map(sub => {
+            sub.checked = true;
+            return sub;
+        }));
+    };
+
+    const deselectAllSubjects = () => {
+        setSubjects(s => s.map(sub => {
+            sub.checked = false;
+            return sub;
+        }));
+    };
+
+    const handleSubjectChange = (subjectId) => {
+        setSubjects(s => s.map(sub => {
+            if (sub.id === subjectId) {
+                sub.checked = !sub.checked;
+            }
+            return sub;
+        }));
+    };
 
     return (
         <>
@@ -57,7 +116,9 @@ const Search = ({setActiveTab}) => {
                             <PageInformation numResults={numResults} currentPage={currentPage} />
                         </div>
                         <div className="pull-right">
-                            <PageNavigation currentPage={currentPage} setCurrentPage={setCurrentPage} maxPages={maxPages} />
+                            <div id="nav-top">
+                                <PageNavigation currentPage={currentPage} setCurrentPage={setCurrentPage} maxPages={maxPages} />
+                            </div>
                             <PageDisplayOptions expanded={expanded} setExpanded={setExpanded} />
                         </div>
                     </div>
@@ -70,23 +131,15 @@ const Search = ({setActiveTab}) => {
                 <div className="row">
                     <div id="subjects-list" className="col-md-4">
                         <div id="subject-selection-buttons">
-                            <button className="button-ovs js-subject-select-all" type="button">Alles selecteren</button>&nbsp;
-                            <button className="button-ovs js-subject-select-none" type="button">Niets selecteren</button>
+                            <button className="button-ovs js-subject-select-all" type="button" onClick={selectAllSubjects}>Alles selecteren</button>&nbsp;
+                            <button className="button-ovs js-subject-select-none" type="button" onClick={deselectAllSubjects}>Niets selecteren</button>
                         </div>
-                        <div>
-                            <label className="checkbox-inline">
-                                <input className="js-data-subject" data-md-subject="inlandwaters" type="checkbox" checked={true} />
-                                <span>Binnenwater</span>
-                            </label>
-                        </div>
-                        <div>
-                            <label className="checkbox-inline">
-                                <input className="js-data-subject" data-md-subject="structure" type="checkbox" checked={true} />
-                                <span>Civiele structuren</span>
-                            </label>
-                        </div>
+                        { subjects.map(subject => <Subject key={subject.id} subjectId={subject.id} subjectTitle={subject.title} isChecked={subject.checked} handleChange={handleSubjectChange} />) }
                     </div>
                     <ReportsList records={reports.records} setActiveTab={setActiveTab} classNames="col-md-7" expand={expanded} />
+                    <div id="nav-bottom" className="col-md-7 col-md-offset-4">
+                        <PageNavigation currentPage={currentPage} setCurrentPage={setCurrentPage} maxPages={maxPages} />
+                    </div>
                 </div>
             </div>
         </>
