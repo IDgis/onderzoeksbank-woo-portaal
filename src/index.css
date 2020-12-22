@@ -39,10 +39,6 @@ strong {
     background-color: #f3f7d4;
 }
 
-.not_found {
-    margin: 10px;
-}
-
 .hoeken_3_boven {
     border-radius: 3px 3px 0px 0px;
     position: relative;
@@ -57,7 +53,6 @@ strong {
     margin: 0px auto 20px;
     position: relative;
     width: 960px;
-    background-color: #fff;
 }
 
 /* HEADER */
