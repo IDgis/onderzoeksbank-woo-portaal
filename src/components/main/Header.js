@@ -15,10 +15,10 @@ const Header = ({activeTab, setActiveTab}) => (
                     <Link className="hoeken_3_boven" to="/" onClick={() => setActiveTab("home")}>Home</Link>
                 </li>
                 <li className={activeTab === "onderzoeksbank" ? "active" : ""}>
-                    <Link className="hoeken_3_boven" to="/onderzoeksbank/" onClick={() => setActiveTab("onderzoeksbank")}>Onderzoeken</Link>
+                    <Link className="hoeken_3_boven" to="/onderzoeksbank" onClick={() => setActiveTab("onderzoeksbank")}>Onderzoeken</Link>
                 </li>
                 <li className={activeTab === "contact" ? "active" : ""}>
-                    <Link className="hoeken_3_boven" to="/contact/" onClick={() => setActiveTab("contact")}>Contact</Link>
+                    <Link className="hoeken_3_boven" to="/contact" onClick={() => setActiveTab("contact")}>Contact</Link>
                 </li>
             </ul>
         </div>

@@ -7,6 +7,7 @@ import Footer from './components/footer/Footer';
 import Header from './components/main/Header';
 import Home from './components/home/Home';
 import NotFound from './components/main/NotFound';
+import Onderzoeksbank from './components/onderzoeksbank/Onderzoeksbank';
 
 import './index.css';
 
@@ -37,6 +38,12 @@ const Main = () => {
                     <Route path="/" exact>
                         <Home setActiveTab={setActiveTab} />
                     </Route>
+                    <Route exact path="/onderzoeksbank">
+                        <Onderzoeksbank setActiveTab={setActiveTab} />
+                    </Route>
+                    {/* <Route path="/onderzoeksbank/onderzoek/:onderzoekUUID">
+                        
+                    </Route> */}
                     <Route path="/contact">
                         <Contact setActiveTab={setActiveTab} />
                     </Route>
