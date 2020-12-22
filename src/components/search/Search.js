@@ -7,7 +7,6 @@ import PageNavigation from '../page/PageNavigation';
 import ReportsList from '../reportslist/ReportsList';
 import SearchForm from './SearchForm';
 import Subject from './Subject';
-import withTabs from '../main/withTabs';
 
 const Search = ({setActiveTab}) => {
 
@@ -146,4 +145,4 @@ const Search = ({setActiveTab}) => {
     );
 }
 
-export default withTabs(Search);
+export default Search;

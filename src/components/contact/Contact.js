@@ -1,7 +1,5 @@
 import React from 'react';
 
-import withTabs from '../main/withTabs';
-
 const Contact = ({activeTab, setActiveTab}) => (
     <div className="content">
         <p>
@@ -16,4 +14,4 @@ const Contact = ({activeTab, setActiveTab}) => (
     </div>
 );
 
-export default withTabs(Contact);
+export default Contact;
