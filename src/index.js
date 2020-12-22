@@ -37,6 +37,9 @@ const Main = () => {
                     <Route path="/" exact>
                         <Home setActiveTab={setActiveTab} />
                     </Route>
+                    <Route path="/contact">
+                        <Contact setActiveTab={setActiveTab} />
+                    </Route>
                     <Route path="/404">
                         <NotFound setActiveTab={setActiveTab} />
                     </Route>
