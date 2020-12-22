@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import PageInformation from '../page/PageInformation';
 import PageNavigation from '../page/PageNavigation';
+import Search from '../search/Search';
 
 const Onderzoeksbank = () => {
 
@@ -65,6 +66,7 @@ const Onderzoeksbank = () => {
                     </div>
                     <PageNavigation currentPage={currentPage} setCurrentPage={setCurrentPage} maxPages={maxPages} />
                 </div>
+                <Search setFilter={setFilter} />
             </div>
         </div>
     );

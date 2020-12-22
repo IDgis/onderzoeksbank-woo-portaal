@@ -290,6 +290,103 @@ strong {
     border: 0px;
 }
 
+/* ZOEKEN WIDGET */
+#zoeken_widget {
+    overflow: hidden;
+}
+
+#zoeken_widget .tabkoppen {
+    overflow: hidden;
+}
+
+#zoeken_widget .tabkoppen .tab {
+    float: left;
+    font-size: 12px;
+    margin-right: 10px;
+    color: #fff;
+    padding: 0px 10px;
+    line-height: 30px;
+    background-color: #595959;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#zoeken_widget .tabkoppen .tab.actief {
+    background-color: #0096d2;
+    color: #fff;
+    cursor: default;
+}
+
+#zoeken_widget .tabbladen {
+    padding: 5px 0px 5px 0px;
+    background-color: #999;
+}
+
+#zoeken_widget .tabblad {
+    display: block;
+}
+
+#zoeken_widget .tabblad ul {
+
+}
+
+#zoeken_widget .tabblad ul li {
+
+}
+
+#zoeken_widget .tabblad ul li a {
+
+}
+
+#zoeken_widget .tabblad ul li a:hover {
+
+}
+
+#zoeken_widget .tabblad ul li.eerste {
+
+}
+
+#zoeken_widget .advanced_search .inputtable {
+    width: 247px;
+    border: 0px;
+    background-color: #fff;
+    color: #333;
+    display: block;
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+    margin-bottom: 15px;
+    padding: 0px 5px;
+    text-align: left;
+}
+
+#zoeken_widget .advanced_search .selectbox {
+
+}
+
+#zoeken_widget .advanced_search label {
+    display: block;
+    font-size: 12px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+#zoeken_widget .advanced_search .button {
+    padding: 6px 12px;
+    background-color: #831625;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#zoeken_widget .advanced_search .button:hover {
+    text-decoration: none;
+    background-color: #dc0000;
+    color: #fff;
+}
+
 /* ONDERZOEKEN */
 .onderzoek-hoofd {
     background-color: #dedede;
