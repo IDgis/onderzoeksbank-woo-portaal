@@ -39,36 +39,34 @@ const Onderzoeksbank = () => {
     }, [currentPage, filter]);
 
     return (
-        <div id="content" className="content">
-            <div className="dummy">
-                <div className="content_main">
-                    <div className="onderzoeken-laatste">
-                        <h1>Laatst uitgevoerde onderzoeken</h1>
-                        <PageInformation numResults={numResults} currentPage={currentPage} />
-                        {
-                            reports.records?.map(record => (
-                                <div className="onderzoek-hoofd hoeken_5" key={record.uuid}>
-                                    <table width="100%" cellSpacing="0" cellPadding="0" border="0">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <Link to={`/onderzoeksbank/onderzoek/${record.uuid}`}>{ record.titel }</Link>
-                                                </td>
-                                                <td className="date" width="100">
-                                                    { record.datumPublicatie.split("T")[0] }
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            ))
-                        }
-                    </div>
-                    <PageNavigation currentPage={currentPage} setCurrentPage={setCurrentPage} maxPages={maxPages} />
+        <>
+            <div className="content_main">
+                <div className="onderzoeken-laatste">
+                    <h1>Laatst uitgevoerde onderzoeken</h1>
+                    <PageInformation numResults={numResults} currentPage={currentPage} />
+                    {
+                        reports.records?.map(record => (
+                            <div className="onderzoek-hoofd hoeken_5" key={record.uuid}>
+                                <table width="100%" cellSpacing="0" cellPadding="0" border="0">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <Link to={`/onderzoeksbank/onderzoek/${record.uuid}`}>{ record.titel }</Link>
+                                            </td>
+                                            <td className="date" width="100">
+                                                { record.datumPublicatie.split("T")[0] }
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        ))
+                    }
                 </div>
-                <Search setFilter={setFilter} />
+                <PageNavigation currentPage={currentPage} setCurrentPage={setCurrentPage} maxPages={maxPages} />
             </div>
-        </div>
+            <Search setFilter={setFilter} />
+        </>
     );
 };
 
