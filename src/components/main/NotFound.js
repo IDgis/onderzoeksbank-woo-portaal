@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import withTabs from './withTabs';
+const NotFound = ({setActiveTab}) => {
 
-const NotFound = ({activeTab, setActiveTab}) => (
-    <div>
-        <h1>404: Not Found</h1>
-    </div>
-);
+    useEffect(() => {
+        setActiveTab("");
+    }, []);
 
-export default withTabs(NotFound);
+    return (
+        <div className="content_main">
+            <h1>404: Not Found</h1>
+        </div>
+    );
+};
+
+export default NotFound;

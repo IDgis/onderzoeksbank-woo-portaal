@@ -1,31 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Header = ({activeTab}) => {
-    const [headerText, setHeaderText] = useState("404: Not Found");
-
-    useEffect(() => {
-        if (activeTab === "home") {
-            setHeaderText("Welkom bij de Onderzoeksbank Overijssel");
-        } else if (activeTab === "search") {
-            setHeaderText("Uitgebreid zoeken");
-        } else if (activeTab === "browse") {
-            setHeaderText("Bladeren");
-        } else if (activeTab === "about") {
-            setHeaderText("Over deze site");
-        } else if (activeTab === "contact") {
-            setHeaderText("Contact");
-        } else if (activeTab === "report") {
-            setHeaderText("Beschrijving Onderzoeksbank Rapport");
-        } else {
-            setHeaderText("404: Not Found");
-        }
-    }, [activeTab]);
-
-    return (
-        <div className="header">
-            <h1 className="header">{ headerText }</h1>
+const Header = ({activeTab, setActiveTab}) => (
+    <div id="header">
+        <div className="label">Provincie Overijssel</div>
+        <div className="overlay"></div>
+        <div className="afbeeldingen">
+            <img src="/clouds.png" alt="Onderzoeksbank Provincie Overijssel" title="Onderzoeksbank Provincie Overijssel"/>
         </div>
-    );
-};
+        <div className="titelbalk">Onderzoeksbank Overijssel</div>
+        <div className="navigatie">
+            <ul>
+                <li className={activeTab === "home" ? "active" : ""}>
+                    <Link className="hoeken_3_boven" to="/" onClick={() => setActiveTab("home")}>Home</Link>
+                </li>
+                <li className={activeTab === "onderzoeksbank" ? "active" : ""}>
+                    <Link className="hoeken_3_boven" to="/onderzoeksbank" onClick={() => setActiveTab("onderzoeksbank")}>Onderzoeken</Link>
+                </li>
+                <li className={activeTab === "contact" ? "active" : ""}>
+                    <Link className="hoeken_3_boven" to="/contact" onClick={() => setActiveTab("contact")}>Contact</Link>
+                </li>
+            </ul>
+        </div>
+    </div>
+);
 
 export default Header;

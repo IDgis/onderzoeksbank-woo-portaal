@@ -1,44 +1,65 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, useLocation } from 'react-router-dom';
 
-import About from './components/about/About';
 import Contact from './components/contact/Contact';
+import Footer from './components/footer/Footer';
 import Header from './components/main/Header';
 import Home from './components/home/Home';
 import NotFound from './components/main/NotFound';
-import Report from './components/report/Report';
-import Search from './components/search/Search';
+import Onderzoek from './components/onderzoeksbank/Onderzoek';
+import Onderzoeksbank from './components/onderzoeksbank/Onderzoeksbank';
 
 import './index.css';
 
 const Main = () => {
 
-    const path = window.location.href.split("/")[3];
-    const [activeTab, setActiveTab] = useState(path === "" ? "home" : path.substring(0, path.indexOf('?') === -1 ? path.length : path.indexOf('?')));
+    const [activeTab, setActiveTab] = useState("");
 
-    const setTab = (tabName) => {
-        if (tabName !== "report") {
-            setActiveTab(tabName);
+    const location = useLocation();
+    useEffect(() => {
+        const { pathname } = location;
+
+        if (pathname.split("/")[1] === "") {
+            setActiveTab("home");
+        } else if (pathname.split("/")[1] === "onderzoeksbank") {
+            setActiveTab("onderzoeksbank");
+        } else if (pathname.split("/")[1] === "contact") {
+            setActiveTab("contact")
+        } else {
+            setActiveTab("");
         }
-    }
+    }, []);
 
     return (
-        <div className="page">
-            <div className="logo">
-                <a><img src="/logo_overijssel.png" alt="logo"></img></a>
-            </div>
-            <Header activeTab={activeTab} />
-            <div className="grid">
-                <Switch>
-                    <Route path="/" exact component={ (props) => <Home activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
-                    <Route path="/search" exact component={ (props) => <Search activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
-                    <Route path="/contact" exact component={ (props) => <Contact activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
-                    <Route path="/about" exact component={ (props) => <About activeTab={activeTab} setActiveTab={setActiveTab} {...props} /> } />
-                    <Route path="/report/:reportUUID" exact component={ (props) => <Report activeTab={activeTab} {...props} /> } />
-                    <Route path="/404" exact component={ (props) => <NotFound activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
-                    <Route component={ (props) => <NotFound activeTab={activeTab} setActiveTab={setTab} {...props} /> } />
-                </Switch>
+        <div className={`body-normal ${process.env.REACT_APP_DEPLOYMENT_ACCEPTANCE === 'true' ? 'body-acceptance' : ''}`}>
+            <div id="wrapper">
+                <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+                <div id="content" className="content">
+                    <div className="dummy">
+                        <Switch>
+                            <Route path="/" exact>
+                                <Home setActiveTab={setActiveTab} />
+                            </Route>
+                            <Route exact path="/onderzoeksbank">
+                                <Onderzoeksbank setActiveTab={setActiveTab} />
+                            </Route>
+                            <Route path="/onderzoeksbank/onderzoek/:onderzoekUUID">
+                                <Onderzoek setActiveTab={setActiveTab} />
+                            </Route>
+                            <Route path="/contact">
+                                <Contact setActiveTab={setActiveTab} />
+                            </Route>
+                            <Route path="/404">
+                                <NotFound setActiveTab={setActiveTab} />
+                            </Route>
+                            <Route>
+                                <NotFound setActiveTab={setActiveTab} />
+                            </Route>
+                        </Switch>
+                    </div>
+                </div>
+                <Footer />
             </div>
         </div>
     );
