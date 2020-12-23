@@ -440,6 +440,7 @@ strong {
     position: relative;
     color: #000;
     overflow: hidden;
+    overflow-wrap: anywhere;
 }
 
 .onderzoek-content table tr {
