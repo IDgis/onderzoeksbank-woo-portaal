@@ -263,15 +263,15 @@ strong {
 
 #nieuws_widget .tabblad ul {
     margin: 0px;
-    padding: 0px;
-    list-style: none;
+    padding-left: 25px;
+    list-style: disclosure-closed;
+    color: #8c8c8c;
 }
 
 #nieuws_widget .tabblad ul li {
     margin: 0px;
     padding: 0px;
     border-top: 1px solid #d7d7d7;
-    list-style: none;
 }
 
 #nieuws_widget .tabblad ul li a:hover {
@@ -281,7 +281,7 @@ strong {
 
 #nieuws_widget .tabblad ul li a {
     display: block;
-    padding: 8px 20px 8px 15px;
+    padding: 8px 20px 8px 5px;
     text-decoration: none;
     color: #000;
 }
@@ -420,6 +420,13 @@ strong {
     margin: 0px;
     padding-left: 25px;
     list-style: disclosure-open;
+    color: #8c8c8c;
+}
+
+.onderzoek-hoofd .onderzoek-marker ul {
+    margin: 0px;
+    padding-left: 25px;
+    list-style: disclosure-closed;
     color: #8c8c8c;
 }
 

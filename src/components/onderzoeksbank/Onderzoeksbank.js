@@ -50,6 +50,9 @@ const Onderzoeksbank = () => {
                                 <table width="100%" cellSpacing="0" cellPadding="0" border="0">
                                     <tbody>
                                         <tr>
+                                            <td className="onderzoek-marker" width="20" align="center">
+                                                <ul><li></li></ul>
+                                            </td>
                                             <td>
                                                 <Link to={`/onderzoeksbank/onderzoek/${record.uuid}`}>{ record.titel }</Link>
                                             </td>
