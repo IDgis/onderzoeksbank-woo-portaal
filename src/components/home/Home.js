@@ -1,82 +1,31 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React from 'react';
+import RecentReports from '../report/RecentReports';
 
-import ReportsList from '../reportslist/ReportsList';
-import withTabs from '../main/withTabs';
-
-const Home = ({activeTab, setActiveTab}) => {
-
-    const [reports, setReports] = useState({});
-    const [filter, setFilter] = useState("");
-    const searchRef = useRef(null);
-
-    useEffect(async () => {
-        const cancelTokenSource = axios.CancelToken.source();
-        
-        try {
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/report/query?sort=dateDesc&limit=5`, {
-                cancelToken: cancelTokenSource.token
-            });
-
-            if (filter !== "") {
-                const filteredReports = response.data.records.filter(record =>
-                    record.titel.indexOf(filter) !== -1 || record.omschrijving.indexOf(filter) !== -1);
-                
-                    setReports({count: filteredReports.length, records: filteredReports});
-            } else {
-                setReports(response.data);
-            }
-        } catch (err) {
-            console.log(err);
-        }
-
-        return () => {
-            cancelTokenSource.cancel();
-        };
-    }, [filter]);
-
-    const filterReports = async (e) => {
-        e.preventDefault();
-        setFilter(searchRef.current.value);
-    };
-
-
-
-    return (
-        <div>
-            <div id="index-extra-text">
-                In de Onderzoeksbank van Overijssel vindt u rapporten van datasets. 
-                Het beheer van data en de bijbehorende beschrijvingen worden regelmatig uitgevoerd. 
-                Hieronder staan de meest actuele rapporten. U kunt meteen beginnen met zoeken. 
-                Bij <Link className="link" to="/search" onClick={() => {setActiveTab("search")}}>uitgebreid zoeken</Link> of <Link className="link" to="/browse" onClick={() => {setActiveTab("browse")}}>bladeren</Link> vindt u nog meer zoekmogelijkheden.
-            </div>
-            <div className="intro">
+const Home = ({setActiveTab}) => (
+    <>
+        <div className="content_main">
+            <div className="page_home">
+                <h1>
+                    <strong>Welkom bij de Onderzoeksbank Overijssel</strong>
+                </h1>
                 <p>
-                    Zoek en download actuele rapporten en beschrijvingen van de provincie Overijssel.
+                    De provincie Overijssel laat onderzoek doen op allerlei gebieden waar Overijssel bij betrokken is. Dat kan 
+                    gaan over het (provinciale) beleid, de uitvoering ervan of een evaluatie. Doel van de onderzoeken is het 
+                    vergroten van de effectiviteit en/ of efficiency bij projecten waar de provincie bij betrokken is. Daarbij gaat 
+                    het meestal over het effect van beleid, de behaalde doelstellingen of het proces hoe daar gekomen is.
+                </p>
+                <p>
+                    De onderzoeken bevatten veel informatie die vaak ook voor derden van belang is. Om deze kennis te delen, 
+                    publiceert de provincie een openbaar doorzoekbaar register met onderzoeken: de Onderzoeksbank Overijssel.
+                </p>
+                <p>
+                    Ben je op zoek naar een specifiek onderzoek? Wil je weten of er op een bepaald terrein al eens onderzoek is 
+                    gedaan? Dan ben je hier aan het juiste adres.
                 </p>
             </div>
-            <form className="search-bar" onSubmit={filterReports}>
-                <div className="form-group">
-                    <span className="search-label">Zoek</span>
-                </div>
-                <div className="form-group">
-                    <input className="form-control search-field" type="text" placeholder="Zoek op term" name="text" ref={searchRef} />
-                </div>
-                <div className="form-group">
-                    <button id="search-button" className="button-ovs" type="submit">Zoek</button>
-                </div>
-            </form>
-            <div className="header-recent-files">
-                <div className="col-md-12">
-                    <span className="files-info">
-                        Vijf meest recente rapporten:
-                    </span>
-                </div>
-            </div>
-            <ReportsList records={reports.records} setActiveTab={setActiveTab} classNames="col-md-12" expand={true} />
         </div>
-    );
-};
+        <RecentReports setActiveTab={setActiveTab} />
+    </>
+);
 
-export default withTabs(Home);
+export default Home;

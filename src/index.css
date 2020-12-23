@@ -1,8 +1,528 @@
-html {
-    overflow-y: scroll;
-    overflow-x: hidden;
+html, body, div {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
 }
 
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #333;
+    width: 100%;
+    height: 100%;
+    line-height: 1;
+}
+
+h1 {
+    font-size: 22px;
+    padding: 0px;
+    margin: 0px 0px 15px 0px;
+    color: #831625;
+}
+
+p {
+    line-height: 22px;
+    margin-bottom: 18px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+strong {
+    font-weight: bold;
+}
+
+.body-normal {
+    background-color: #fff;
+    box-sizing: content-box;
+}
+
+.body-acceptance {
+    background-color: #f3f7d4;
+}
+
+.hoeken_3_boven {
+    border-radius: 3px 3px 0px 0px;
+    position: relative;
+}
+
+.hoeken_5 {
+    border-radius: 5px;
+    position: relative;
+}
+
+.dummy {
+    overflow: visible;
+}
+
+/* WRAPPER */
+#wrapper {
+    margin: 0px auto 20px;
+    position: relative;
+    width: 960px;
+    padding: 0px 20px;
+    border-left: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+}
+
+/* HEADER */
+#header {
+    background-color: #9f9f9f;
+    position: relative;
+    overflow: hidden;
+}
+
+#header .overlay {
+    height: 132px;
+    width: 960px;
+    top: 0px;
+    right: 0px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 8;
+}
+
+#header .label {
+    position: absolute;
+    padding: 0px 30px 0px 15px;
+    left: 0px;
+    top: 25px;
+    line-height: 25px;
+    color: #fff;
+    font-weight: bold;
+    background-color: #831625;
+    overflow: hidden;
+    z-index: 9;
+}
+
+#header .titelbalk {
+    position: absolute;
+    left: 0px;
+    bottom: 41px;
+    padding: 13px 40px;
+    color: #fff;
+    font-size: 28px;
+    background-color: #1a1a1a9f;
+    width: 880px;
+    z-index: 9;
+}
+
+#header .afbeeldingen {
+    height: 132px;
+    overflow: hidden;
+}
+
+#header .afbeeldingen img {
+    height: 132px;
+}
+
+#header .navigatie {
+    background-color: #255c9f;
+    overflow: hidden;
+}
+
+#header .navigatie ul {
+    list-style: none;
+    margin: 0px;
+    padding: 10px 10px 0px 10px;
+}
+
+#header .navigatie ul li {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    float: left;
+}
+
+#header .navigatie ul li a {
+    display: block;
+    color: #fff;
+    font-weight: bold;
+    line-height: 31px;
+    overflow: hidden;
+    text-decoration: none;
+    padding: 0px 8px;
+    margin: 0px 2px;
+}
+
+#header .navigatie ul li.active a {
+    background-color: #0096d2;
+    text-decoration: none;
+    cursor: default;
+}
+
+#header .navigatie ul li a:hover {
+    background-color: #0096d2;
+    text-decoration: none;
+}
+
+.content {
+    padding: 0px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.content_main {
+    width: 629px;
+    float: left;
+    position: relative;
+    padding: 30px 23px 115px 23px;
+}
+
+.content_right {
+    float: right;
+    position: relative;
+    width: 285px;
+    padding: 37px 0px 115px 0px;
+}
+
+.content_footer {
+    background-color: #255c9f;
+    padding-top: 10px;
+    overflow: hidden;
+}
+
+/* FOOTER */
+#footer {
+    padding: 17px 10px;
+    overflow: hidden;
+}
+
+#footer .copyright {
+    float: left;
+    font-size: 11px;
+    width: 450px;
+    color: #fff;
+}
+
+#footer .menu {
+    float: right;
+    width: 450px;
+}
+
+#footer .menu ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#footer .menu ul li {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    float: left;
+}
+
+#footer .menu ul li a {
+    display: block;
+    color: #fff;
+    overflow: hidden;
+    text-decoration: none;
+    padding: 0px 10px;
+}
+
+#footer .menu ul li a:hover {
+    color: #831625;
+    text-decoration: none;
+}
+
+/* NIEUWS WIDGET */
+#nieuws_widget {
+    overflow: hidden;
+}
+
+#nieuws_widget .tabkoppen {
+    overflow: hidden;
+}
+
+#nieuws_widget .tabkoppen .tab {
+    float: left;
+    font-size: 12px;
+    margin-right: 10px;
+    color: #fff;
+    padding: 0px 10px;
+    line-height: 30px;
+    background-color: #255c9f;
+    overflow: hidden;
+}
+
+#nieuws_widget .tabkoppen .tab.actief {
+    background-color: #0096d2;
+    color: #fff;
+    cursor: default;
+}
+
+#nieuws_widget .tabbladen {
+    padding: 5px 0px 40px 0px;
+    background-color: #efefef;
+}
+
+#nieuws_widget .tabblad.actief {
+    display: block;
+}
+
+#nieuws_widget .tabblad ul {
+    margin: 0px;
+    padding-left: 25px;
+    list-style: disclosure-closed;
+    color: #8c8c8c;
+}
+
+#nieuws_widget .tabblad ul li {
+    margin: 0px;
+    padding: 0px;
+    border-top: 1px solid #d7d7d7;
+}
+
+#nieuws_widget .tabblad ul li a:hover {
+    text-decoration: underline;
+    color: #0096d2;
+}
+
+#nieuws_widget .tabblad ul li a {
+    display: block;
+    padding: 8px 20px 8px 5px;
+    text-decoration: none;
+    color: #000;
+}
+
+#nieuws_widget .tabblad ul li.eerste {
+    border: 0px;
+}
+
+/* ZOEKEN WIDGET */
+#zoeken_widget {
+    overflow: hidden;
+}
+
+#zoeken_widget .tabkoppen {
+    overflow: hidden;
+}
+
+#zoeken_widget .tabkoppen .tab {
+    float: left;
+    font-size: 12px;
+    margin-right: 10px;
+    color: #fff;
+    padding: 0px 10px;
+    line-height: 30px;
+    background-color: #595959;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#zoeken_widget .tabkoppen .tab.actief {
+    background-color: #0096d2;
+    color: #fff;
+    cursor: default;
+}
+
+#zoeken_widget .tabbladen {
+    padding: 5px 0px 5px 0px;
+    background-color: #999;
+}
+
+#zoeken_widget .tabblad {
+    display: block;
+}
+
+#zoeken_widget .tabblad ul {
+
+}
+
+#zoeken_widget .tabblad ul li {
+
+}
+
+#zoeken_widget .tabblad ul li a {
+
+}
+
+#zoeken_widget .tabblad ul li a:hover {
+
+}
+
+#zoeken_widget .tabblad ul li.eerste {
+
+}
+
+#zoeken_widget .advanced_search .inputtable {
+    width: 247px;
+    border: 0px;
+    background-color: #fff;
+    color: #333;
+    display: block;
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+    margin-bottom: 15px;
+    padding: 0px 5px;
+    text-align: left;
+}
+
+#zoeken_widget .advanced_search .selectbox {
+
+}
+
+#zoeken_widget .advanced_search label {
+    display: block;
+    font-size: 12px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+#zoeken_widget .advanced_search .button {
+    padding: 6px 12px;
+    background-color: #831625;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#zoeken_widget .advanced_search .button:hover {
+    text-decoration: none;
+    background-color: #dc0000;
+    color: #fff;
+}
+
+/* ONDERZOEKEN */
+.onderzoek-hoofd {
+    background-color: #dedede;
+    margin: 10px 0px 0px 0px;
+    padding: 0px 5px;
+    font-weight: bold;
+    color: #2d2d2d;
+    line-height: 31px;
+    position: relative;
+    overflow: hidden;
+}
+
+.onderzoek-hoofd a {
+    text-decoration: none;
+    font-size: 12px;
+    color: #000;
+}
+
+.onderzoek-hoofd a:hover {
+    text-decoration: underline;
+    color: #0096d2;
+}
+
+.onderzoek-hoofd .date {
+    color: #ec2439;
+    font-size: 11px;
+    text-align: center;
+}
+
+.onderzoek-hoofd table ul {
+    margin: 0px;
+    padding-left: 25px;
+    list-style: disclosure-open;
+    color: #8c8c8c;
+}
+
+.onderzoek-hoofd .onderzoek-marker ul {
+    margin: 0px;
+    padding-left: 25px;
+    list-style: disclosure-closed;
+    color: #8c8c8c;
+}
+
+.onderzoek-content {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #f6f6f6;
+    position: relative;
+    color: #000;
+    overflow: hidden;
+}
+
+.onderzoek-content table tr {
+    border-bottom: 1px solid #cecece;
+}
+
+.onderzoek-content .zoekoverzicht ul {
+    margin: 0px;
+    padding-left: 13px;
+    list-style: square;
+    line-height: 21px;
+}
+
+.onderzoek-content table a {
+    color: #0096d2;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.onderzoek-content table a:hover {
+    color: #0096d2;
+    text-decoration: underline;
+}
+
+.onderzoek-content .zoekoverzicht {
+    padding: 8px 10px;
+}
+
+.onderzoek-content .icoon ul {
+    margin: 0px;
+    padding-left: 25px;
+    list-style: square;
+    color: #8c8c8c;
+}
+
+/* NAV */
+#nav {
+    display: block;
+}
+
+#nav .pager {
+    padding-left: 0;
+    margin: 20px 0px;
+    text-align: center;
+    list-style: none;
+}
+
+#nav .pager li {
+    display: inline;
+}
+
+#nav .pager li a {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #337ab7;
+}
+
+#nav .pager li a:hover {
+    text-decoration: none;
+    background-color: #eee;
+}
+
+#nav .pager .paging-disabled {
+    pointer-events: none;
+}
+
+#nav .pager .disabled a {
+    color: #777;
+    cursor: not-allowed;
+    background-color: #fff;
+}
+
+.page_home {
+    height: 261px;
+    font-size: 13px;
+    line-height: 17px;
+}
+
+/*
 body {
     background-color: #fff;
     box-sizing: content-box;
@@ -227,10 +747,6 @@ a.md-title:hover {
     text-decoration: underline;
 }
 
-#js-search-results-all {
-    /* overflow: auto; */
-}
-
 .data-control {
     margin: 10px 0 10px -15px;
     overflow: auto;
@@ -290,4 +806,4 @@ p.bestandsnaam {
     font-size: 21px;
     color: #000;
     line-height: 25px;
-}
+} */
