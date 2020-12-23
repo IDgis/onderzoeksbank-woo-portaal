@@ -416,6 +416,55 @@ strong {
     text-align: center;
 }
 
+.onderzoek-hoofd table ul {
+    margin: 0px;
+    padding-left: 25px;
+    list-style: disclosure-open;
+    color: #8c8c8c;
+}
+
+.onderzoek-content {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #f6f6f6;
+    position: relative;
+    color: #000;
+    overflow: hidden;
+}
+
+.onderzoek-content table tr {
+    border-bottom: 1px solid #cecece;
+}
+
+.onderzoek-content .zoekoverzicht ul {
+    margin: 0px;
+    padding-left: 13px;
+    list-style: square;
+    line-height: 21px;
+}
+
+.onderzoek-content table a {
+    color: #0096d2;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.onderzoek-content table a:hover {
+    color: #0096d2;
+    text-decoration: underline;
+}
+
+.onderzoek-content .zoekoverzicht {
+    padding: 8px 10px;
+}
+
+.onderzoek-content .icoon ul {
+    margin: 0px;
+    padding-left: 25px;
+    list-style: square;
+    color: #8c8c8c;
+}
+
 /* NAV */
 #nav {
     display: block;
