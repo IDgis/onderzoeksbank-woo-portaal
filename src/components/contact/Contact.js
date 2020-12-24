@@ -1,5 +1,6 @@
 import React from 'react';
-import RecentReports from '../report/RecentReports';
+
+import OnderzoeksList from '../onderzoeken/recent/OnderzoeksList';
 
 const Contact = ({setActiveTab}) => (
     <>
@@ -19,7 +20,7 @@ const Contact = ({setActiveTab}) => (
                 </div>
             </div>
         </div>
-        <RecentReports setActiveTab={setActiveTab} />
+        <OnderzoeksList setActiveTab={setActiveTab} />
     </>
 );
 
