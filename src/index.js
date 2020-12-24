@@ -7,8 +7,8 @@ import Footer from './components/footer/Footer';
 import Header from './components/main/Header';
 import Home from './components/home/Home';
 import NotFound from './components/main/NotFound';
-import Onderzoek from './components/onderzoeksbank/Onderzoek';
-import Onderzoeksbank from './components/onderzoeksbank/Onderzoeksbank';
+import Onderzoek from './components/onderzoeken/detail/Onderzoek';
+import OnderzoeksList from './components/onderzoeken/main/OnderzoeksList';
 
 import './index.css';
 
@@ -23,7 +23,7 @@ const Main = () => {
         if (pathname.split("/")[1] === "") {
             setActiveTab("home");
         } else if (pathname.split("/")[1] === "onderzoeksbank") {
-            setActiveTab("onderzoeksbank");
+            setActiveTab("onderzoeken");
         } else if (pathname.split("/")[1] === "contact") {
             setActiveTab("contact")
         } else {
@@ -42,7 +42,7 @@ const Main = () => {
                                 <Home setActiveTab={setActiveTab} />
                             </Route>
                             <Route exact path="/onderzoeksbank">
-                                <Onderzoeksbank setActiveTab={setActiveTab} />
+                                <OnderzoeksList setActiveTab={setActiveTab} />
                             </Route>
                             <Route path="/onderzoeksbank/onderzoek/:onderzoekUUID">
                                 <Onderzoek setActiveTab={setActiveTab} />

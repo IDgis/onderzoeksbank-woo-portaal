@@ -54,6 +54,13 @@ strong {
     position: relative;
 }
 
+.zoekselect {
+    width: 257px;
+    line-height: 20px;
+    height: 30px;
+    margin: 3px 0px 15px 0px;
+}
+
 .dummy {
     overflow: visible;
 }
@@ -329,26 +336,6 @@ strong {
     display: block;
 }
 
-#zoeken_widget .tabblad ul {
-
-}
-
-#zoeken_widget .tabblad ul li {
-
-}
-
-#zoeken_widget .tabblad ul li a {
-
-}
-
-#zoeken_widget .tabblad ul li a:hover {
-
-}
-
-#zoeken_widget .tabblad ul li.eerste {
-
-}
-
 #zoeken_widget .advanced_search .inputtable {
     width: 247px;
     border: 0px;
@@ -361,10 +348,6 @@ strong {
     margin-bottom: 15px;
     padding: 0px 5px;
     text-align: left;
-}
-
-#zoeken_widget .advanced_search .selectbox {
-
 }
 
 #zoeken_widget .advanced_search label {

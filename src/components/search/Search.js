@@ -1,14 +1,20 @@
 import React, { useRef, useState } from 'react';
 
-const Search = ({setFilter}) => {
+import Onderwerpen from './advanced/OnderwerpenSearch';
+import TextSearch from './TextSearch';
 
-    const searchRef = useRef(null);
+const Search = ({setTextFilter, onderwerpen, setOnderwerpFilter}) => {
+    const textRef = useRef(null);
+    const onderwerpRef = useRef(null);
     const [activeTab, setActiveTab] = useState("search");
 
     const searchResults = (e) => {
         e.preventDefault();
 
-        setFilter(searchRef.current.value);
+        setTextFilter(textRef.current.value);
+
+        const allOnderwerpen = onderwerpRef.current === null || onderwerpRef.current?.value === "all";
+        setOnderwerpFilter(allOnderwerpen ? "" : onderwerpRef.current.value);
     };
 
     return (
@@ -25,12 +31,12 @@ const Search = ({setFilter}) => {
                                 <form onSubmit={searchResults}>
                                     <table width="100%" cellSpacing="0" cellPadding="0">
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <label htmlFor="trefwoord">Zoekwoord</label>
-                                                    <input id="trefwoord" className="inputtable" type="text" name="trefwoord" ref={searchRef} />
-                                                </td>
-                                            </tr>
+                                            <TextSearch ref={textRef} />
+                                            {activeTab === "advanced" &&
+                                                <>
+                                                    <Onderwerpen onderwerpen={onderwerpen} ref={onderwerpRef} />
+                                                </>
+                                            }
                                         </tbody>
                                     </table>
                                     <button className="button" type="submit">
