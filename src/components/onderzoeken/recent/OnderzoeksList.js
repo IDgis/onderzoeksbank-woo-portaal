@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Onderzoek from './Onderzoek';
 
-const RecentReports = ({setActiveTab}) => {
+const OnderzoeksList = ({setActiveTab}) => {
 
     const [reports, setReports] = useState({});
 
@@ -37,13 +38,9 @@ const RecentReports = ({setActiveTab}) => {
                         <div id="laatst_toegevoegd" className="tabblad actief">
                             <ul>
                                 {
-                                    reports.records?.map((record, i) => (
-                                        <li className={i === 0 ? "eerste" : ""} key={record.uuid}>
-                                            <Link to={`/onderzoeksbank/onderzoek/${record.uuid}`} onClick={() => setActiveTab("onderzoeksbank")}>
-                                                { record.titel }
-                                            </Link>
-                                        </li>
-                                    ))
+                                    reports.records?.map((record, i) =>
+                                        <Onderzoek record={record} setActiveTab={setActiveTab} index={i} key={record.uuid} />
+                                    )
                                 }
                             </ul>
                         </div>
@@ -54,4 +51,4 @@ const RecentReports = ({setActiveTab}) => {
     );
 };
 
-export default RecentReports;
+export default OnderzoeksList;
