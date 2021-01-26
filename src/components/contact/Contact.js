@@ -15,7 +15,7 @@ const Contact = ({setActiveTab}) => (
                         Heb je vragen, suggesties of tips, aarzel dan niet contact op te nemen.
                     </p>
                     <p>
-                        Stuur je email naar: <a className="link" href="mailto:beleidsinformatie@overijssel.nl">beleidsinformatie@overijssel.nl</a>
+                        Stuur je email naar: <a className="link" href="mailto:kennishub@overijssel.nl">kennishub@overijssel.nl</a>
                     </p>
                 </div>
             </div>
