@@ -3,6 +3,25 @@ import React, { useRef, useState } from 'react';
 import Onderwerpen from './advanced/OnderwerpenSearch';
 import TextSearch from './TextSearch';
 
+const rapportTypen = [
+    {
+        "id": "rapport",
+        "label": "Rapport"
+    },
+    {
+        "id": "beleidsrapport",
+        "label": "Beleidsrapport"
+    },
+    {
+        "id": "onderzoeksrapport",
+        "label": "Onderzoeksrapport"
+    },
+    {
+        "id": "overigerapporten",
+        "label": "Overige rapporten"
+    }
+];
+
 const Search = ({setTextFilter, onderwerpen, setOnderwerpFilter}) => {
     const textRef = useRef(null);
     const onderwerpRef = useRef(null);
@@ -35,8 +54,34 @@ const Search = ({setTextFilter, onderwerpen, setOnderwerpFilter}) => {
                                             {activeTab === "advanced" &&
                                                 <>
                                                     <Onderwerpen onderwerpen={onderwerpen} ref={onderwerpRef} />
+                                                    <tr>
+                                                        <td>
+                                                            <label htmlFor="typen">Rapport typen</label>
+                                                            <select id="typen" className="zoekselect" name="typen">
+                                                                <option value="all">Alle typen</option>
+                                                                {
+                                                                    rapportTypen?.map(rapportType =>
+                                                                        <option key={rapportType.id} value={rapportType.id}>{ rapportType.label }</option>
+                                                                    )
+                                                                }
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label htmlFor="geldigVan">Geldig van</label>
+                                                            <input id="geldigVan" className="zoekselect" type="date" name="geldigVan"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label htmlFor="geldigTot">Geldig tot</label>
+                                                            <input id="geldigTot" className="zoekselect" type="date" name="geldigTot"/>
+                                                        </td>
+                                                    </tr>
                                                 </>
                                             }
+
                                         </tbody>
                                     </table>
                                     <button className="button" type="submit">
