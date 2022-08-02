@@ -13,7 +13,7 @@ const Onderzoek = ({record}) => (
                         <Link to={`/onderzoeksbank/onderzoek/${record.uuid}`}>{ record.titel }</Link>
                     </td>
                     <td className="date" width="100">
-                        { record.datumPublicatie.split("T")[0] }
+                        { new Date(record.datumCreatie).getFullYear().toString() }
                     </td>
                 </tr>
             </tbody>
