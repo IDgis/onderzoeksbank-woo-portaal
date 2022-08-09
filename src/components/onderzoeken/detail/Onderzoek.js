@@ -5,19 +5,19 @@ import axios from 'axios';
 const Onderzoek = () => {
 
     const { onderzoekUUID } = useParams();
-    const [record, setReccord] = useState({});
+    const [record, setRecord] = useState({});
 
     useEffect(async () => {
         const cancelTokenSource = axios.CancelToken.source();
 
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/report/query/${onderzoekUUID}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/research/query/${onderzoekUUID}`, {
                 cancelToken: cancelTokenSource.token
             });
 
-            setReccord(response.data);
+            setRecord(response.data);
         } catch (err) {
-            console.log(err);
+            console.log("Er ging iets mis met het ophalen van het onderzoek met UUID: ", onderzoekUUID, err);
         }
 
         return () => {
@@ -43,7 +43,7 @@ const Onderzoek = () => {
                                             <Link to={`/onderzoeksbank/onderzoek/${onderzoekUUID}`}>{ record.titel }</Link>
                                         </td>
                                         <td className="date" width="100">
-                                            { record.datumPublicatie?.split("T")[0] }
+                                            { new Date(record.datumCreatie).getFullYear().toString() }
                                         </td>
                                     </tr>
                                 </tbody>
@@ -86,10 +86,10 @@ const Onderzoek = () => {
                                             <ul><li></li></ul>
                                         </td>
                                         <td className="zoekoverzicht">
-                                            <strong>Publicatie datum</strong>
+                                            <strong>Creatie jaar</strong>
                                         </td>
                                         <td className="zoekoverzicht">
-                                            { record.datumPublicatie?.split("T")[0] }
+                                            { new Date(record.datumCreatie).getFullYear().toString() }
                                         </td>
                                     </tr>
                                     <tr>
@@ -108,13 +108,24 @@ const Onderzoek = () => {
                                             <ul><li></li></ul>
                                         </td>
                                         <td className="zoekoverzicht">
-                                            <strong>Onderwerpen</strong>
+                                            <strong>Type onderzoek</strong>
+                                        </td>
+                                        <td className="zoekoverzicht">
+                                            { record.typeOnderzoek }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="icoon" width="20" align="center">
+                                            <ul><li></li></ul>
+                                        </td>
+                                        <td className="zoekoverzicht">
+                                            <strong>Thema's</strong>
                                         </td>
                                         <td className="zoekoverzicht">
                                             <ul>
                                                 {
-                                                    record.isoOnderwerpen?.map(onderwerp =>
-                                                        <li key={onderwerp}>{ onderwerp }</li>
+                                                    record.themas?.map(thema =>
+                                                        <li key={thema}>{ thema }</li>
                                                     )
                                                 }
                                             </ul>

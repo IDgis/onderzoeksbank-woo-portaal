@@ -1,11 +1,13 @@
 import React, { useRef, useState } from 'react';
 
-import Onderwerpen from './advanced/OnderwerpenSearch';
+import ResearchTypesSearch from './advanced/ResearchTypesSearch';
 import TextSearch from './TextSearch';
+import ThemesSearch from './advanced/ThemesSearch';
 
-const Search = ({setTextFilter, onderwerpen, setOnderwerpFilter}) => {
+const Search = ({setTextFilter, setTypeFilter, setThemeFilter, themes, researchTypes}) => {
     const textRef = useRef(null);
-    const onderwerpRef = useRef(null);
+    const researchTypeRef = useRef(null);
+    const themeRef = useRef(null);
     const [activeTab, setActiveTab] = useState("search");
 
     const searchResults = (e) => {
@@ -13,8 +15,11 @@ const Search = ({setTextFilter, onderwerpen, setOnderwerpFilter}) => {
 
         setTextFilter(textRef.current.value);
 
-        const allOnderwerpen = onderwerpRef.current === null || onderwerpRef.current?.value === "all";
-        setOnderwerpFilter(allOnderwerpen ? "" : onderwerpRef.current.value);
+        const allResearchTypes = researchTypeRef.current === null || researchTypeRef.current?.value === "all";
+        setTypeFilter(allResearchTypes ? "" : researchTypeRef.current.value);
+
+        const allThemes = themeRef.current === null || themeRef.current?.value === "all";
+        setThemeFilter(allThemes ? "" : themeRef.current.value);
     };
 
     return (
@@ -34,7 +39,8 @@ const Search = ({setTextFilter, onderwerpen, setOnderwerpFilter}) => {
                                             <TextSearch ref={textRef} />
                                             {activeTab === "advanced" &&
                                                 <>
-                                                    <Onderwerpen onderwerpen={onderwerpen} ref={onderwerpRef} />
+                                                    <ResearchTypesSearch researchTypes={researchTypes} ref={researchTypeRef} />
+                                                    <ThemesSearch themes={themes} ref={themeRef} />
                                                 </>
                                             }
                                         </tbody>
