@@ -22,7 +22,7 @@ const Onderzoek = () => {
 
         return () => {
             cancelTokenSource.cancel();
-        }
+        };
     }, []);
 
     return (
