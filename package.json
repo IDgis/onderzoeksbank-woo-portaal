@@ -1,6 +1,6 @@
 {
   "name": "onderzoeksbank-rapport",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "private": true,
   "dependencies": {
     "axios": "^0.21.4",
@@ -12,10 +12,10 @@
     "regenerator-runtime": "^0.13.9"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
+    "test": "react-scripts --openssl-legacy-provider test --env=jsdom",
+    "eject": "react-scripts --openssl-legacy-provider eject"
   },
   "browserslist": {
     "production": [

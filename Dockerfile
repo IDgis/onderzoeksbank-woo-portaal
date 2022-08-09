@@ -1,4 +1,4 @@
-FROM node:15.4.0
+FROM node:18
 
 LABEL maintainer="IDgis bv <info@idgis.nl>"
 
@@ -6,16 +6,19 @@ LABEL maintainer="IDgis bv <info@idgis.nl>"
 WORKDIR /usr/src/app
 
 # Expose port for service
-EXPOSE 5000
+EXPOSE 3000
 
 # Install and configure serve
 RUN npm install -g serve
 
-# Copy source code to image
-COPY . .
+# Copy package.json first for better cache results
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install
+
+# Copy rest of source code to image
+COPY . .
 
 # Switch to node user
 RUN chown -R node /usr/src/app
