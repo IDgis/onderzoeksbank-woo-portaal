@@ -21,7 +21,7 @@ const OnderzoeksList = ({setActiveTab}) => {
 
         return () => {
             cancelTokenSource.cancel();
-        }
+        };
     }, []);
 
     return (
