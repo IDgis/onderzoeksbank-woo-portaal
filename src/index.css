@@ -205,6 +205,16 @@ strong {
     color: #fff;
 }
 
+#footer .copyright a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#footer .copyright a:hover {
+    color: #831625;
+    text-decoration: none;
+}
+
 #footer .menu {
     float: right;
     width: 450px;

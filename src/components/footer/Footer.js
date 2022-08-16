@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => (
     <div id="footer" className="content_footer">
         <div className="copyright">
-            Onderzoeksbank Provincie Overijssel
+            <Link to="/">Onderzoeksbank Provincie Overijssel</Link>
         </div>
         <div className="menu">
             <ul>
