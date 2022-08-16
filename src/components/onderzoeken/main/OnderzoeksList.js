@@ -17,6 +17,7 @@ const OnderzoeksList = () => {
     const [textFilter, setTextFilter] = useState("");
     const [typeFilter, setTypeFilter] = useState("");
     const [themeFilter, setThemeFilter] = useState("");
+    const [creationYearFilter, setCreationYearFilter] = useState(0);
 
     const [researchTypes, setResearchTypes] = useState([]);
     const [themes, setThemes] = useState([]);
@@ -65,7 +66,7 @@ const OnderzoeksList = () => {
 
         try {
             const offset = (currentPage - 1) * resultsPerPage;
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/research/query?sort=dateDesc&limit=${resultsPerPage}&offset=${offset}&text=${textFilter}&typeFilter=${typeFilter}&themeFilter=${themeFilter}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/research/query?sort=dateDesc&limit=${resultsPerPage}&offset=${offset}&text=${textFilter}&typeFilter=${typeFilter}&themeFilter=${themeFilter}&creationYear=${creationYearFilter}`, {
                 cancelToken: cancelTokenSource.token
             });
 
@@ -80,7 +81,7 @@ const OnderzoeksList = () => {
         return () => {
             cancelTokenSource.cancel();
         };
-    }, [currentPage, textFilter, typeFilter, themeFilter]);
+    }, [currentPage, textFilter, typeFilter, themeFilter, creationYearFilter]);
 
     return (
         <>
@@ -96,7 +97,7 @@ const OnderzoeksList = () => {
                 </div>
                 <PageNavigation currentPage={currentPage} setCurrentPage={setCurrentPage} maxPages={maxPages} />
             </div>
-            <Search setTextFilter={setTextFilter} themes={themes} researchTypes={researchTypes} setTypeFilter={setTypeFilter} setThemeFilter={setThemeFilter} />
+            <Search setTextFilter={setTextFilter} themes={themes} researchTypes={researchTypes} setTypeFilter={setTypeFilter} setThemeFilter={setThemeFilter} setCreationYearFilter={setCreationYearFilter} />
         </>
     );
 };

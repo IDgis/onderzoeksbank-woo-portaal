@@ -1,13 +1,15 @@
 import React, { useRef, useState } from 'react';
 
+import CreationYearSearch from './advanced/CreationYearSearch'
 import ResearchTypesSearch from './advanced/ResearchTypesSearch';
 import TextSearch from './TextSearch';
 import ThemesSearch from './advanced/ThemesSearch';
 
-const Search = ({setTextFilter, setTypeFilter, setThemeFilter, themes, researchTypes}) => {
+const Search = ({setTextFilter, setTypeFilter, setThemeFilter, setCreationYearFilter, themes, researchTypes}) => {
     const textRef = useRef(null);
     const researchTypeRef = useRef(null);
     const themeRef = useRef(null);
+    const creationYearRef = useRef(null);
     const [activeTab, setActiveTab] = useState("search");
 
     const searchResults = (e) => {
@@ -20,6 +22,12 @@ const Search = ({setTextFilter, setTypeFilter, setThemeFilter, themes, researchT
 
         const allThemes = themeRef.current === null || themeRef.current?.value === "all";
         setThemeFilter(allThemes ? "" : themeRef.current.value);
+
+        let creationYear = 0;
+        if (creationYearRef.current && creationYearRef.current.value !== "") {
+            creationYear = parseInt(creationYearRef.current.value);
+        }
+        setCreationYearFilter(creationYear);
     };
 
     return (
@@ -41,6 +49,7 @@ const Search = ({setTextFilter, setTypeFilter, setThemeFilter, themes, researchT
                                                 <>
                                                     <ResearchTypesSearch researchTypes={researchTypes} ref={researchTypeRef} />
                                                     <ThemesSearch themes={themes} ref={themeRef} />
+                                                    <CreationYearSearch ref={creationYearRef} />
                                                 </>
                                             }
                                         </tbody>
