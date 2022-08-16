@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => (
     <div id="footer" className="content_footer">
         <div className="copyright">
-            Onderzoeksbank Provincie Overijssel © 2020
+            Onderzoeksbank Provincie Overijssel
         </div>
         <div className="menu">
             <ul>
