@@ -12,7 +12,7 @@ const Home = ({setActiveTab}) => (
                 <p>
                     De provincie Overijssel laat onderzoek doen op allerlei gebieden waar Overijssel bij betrokken is. Dat kan 
                     gaan over het (provinciale) beleid, de uitvoering ervan of een evaluatie. Doel van de onderzoeken is het 
-                    vergroten van de effectiviteit en/ of efficiency bij projecten waar de provincie bij betrokken is. Daarbij gaat 
+                    vergroten van de effectiviteit en/of efficiency bij projecten waar de provincie bij betrokken is. Daarbij gaat 
                     het meestal over het effect van beleid, de behaalde doelstellingen of het proces hoe daar gekomen is.
                 </p>
                 <p>
