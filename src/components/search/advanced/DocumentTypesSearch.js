@@ -1,14 +1,14 @@
 import React, { forwardRef } from 'react';
 
-const ResearchTypesSearch = forwardRef(({researchTypes}, researchTypeRef) => (
+const DocumentTypesSearch = forwardRef(({documentTypes}, documentTypeRef) => (
     <tr>
         <td>
             <label htmlFor="type-documents">Type documenten</label>
-            <select id="type-documents" className="zoekselect" name="researchTypes" ref={researchTypeRef}>
+            <select id="type-documents" className="zoekselect" name="documentTypes" ref={documentTypeRef}>
                 <option value="all">- Alle typen document -</option>
                 {
-                    researchTypes?.map(researchType =>
-                        <option key={researchType.id} value={researchType.id}>{ researchType.label }</option>
+                    documentTypes?.map(documentType =>
+                        <option key={documentType.id} value={documentType.id}>{ documentType.label }</option>
                     )
                 }
             </select>
@@ -16,4 +16,4 @@ const ResearchTypesSearch = forwardRef(({researchTypes}, researchTypeRef) => (
     </tr>
 ));
 
-export default ResearchTypesSearch;
+export default DocumentTypesSearch;
