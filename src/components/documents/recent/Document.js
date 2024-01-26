@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Document = ({record, setActiveTab, index}) => (
     <li className={index === 0 ? "eerste" : ""} key={record.uuid}>
-        <Link to={`/list/document/${record.uuid}`} onClick={() => setActiveTab("documents")}>
+        <Link to={`/list/document/${record.uuid}`} onClick={() => setActiveTab("list")}>
             { record.titel }
         </Link>
     </li>
