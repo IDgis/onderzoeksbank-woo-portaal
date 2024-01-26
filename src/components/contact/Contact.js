@@ -1,6 +1,6 @@
 import React from 'react';
 
-import OnderzoeksList from '../onderzoeken/recent/OnderzoeksList';
+import DocumentList from '../documents/recent/DocumentList';
 
 const Contact = ({setActiveTab}) => (
     <>
@@ -20,7 +20,7 @@ const Contact = ({setActiveTab}) => (
                 </div>
             </div>
         </div>
-        <OnderzoeksList setActiveTab={setActiveTab} />
+        <DocumentList setActiveTab={setActiveTab} />
     </>
 );
 

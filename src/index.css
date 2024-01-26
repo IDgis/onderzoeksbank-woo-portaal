@@ -383,8 +383,8 @@ strong {
     color: #fff;
 }
 
-/* ONDERZOEKEN */
-.onderzoek-hoofd {
+/* DOCUMENTS */
+.document-hoofd {
     background-color: #dedede;
     margin: 10px 0px 0px 0px;
     padding: 0px 5px;
@@ -395,38 +395,38 @@ strong {
     overflow: hidden;
 }
 
-.onderzoek-hoofd a {
+.document-hoofd a {
     text-decoration: none;
     font-size: 12px;
     color: #000;
 }
 
-.onderzoek-hoofd a:hover {
+.document-hoofd a:hover {
     text-decoration: underline;
     color: #0096d2;
 }
 
-.onderzoek-hoofd .date {
+.document-hoofd .date {
     color: #ec2439;
     font-size: 11px;
     text-align: center;
 }
 
-.onderzoek-hoofd table ul {
+.document-hoofd table ul {
     margin: 0px;
     padding-left: 25px;
     list-style: disclosure-open;
     color: #8c8c8c;
 }
 
-.onderzoek-hoofd .onderzoek-marker ul {
+.document-hoofd .document-marker ul {
     margin: 0px;
     padding-left: 25px;
     list-style: disclosure-closed;
     color: #8c8c8c;
 }
 
-.onderzoek-content {
+.document-content {
     margin-top: 10px;
     padding: 5px;
     background-color: #f6f6f6;
@@ -436,33 +436,33 @@ strong {
     overflow-wrap: anywhere;
 }
 
-.onderzoek-content table tr {
+.document-content table tr {
     border-bottom: 1px solid #cecece;
 }
 
-.onderzoek-content .zoekoverzicht ul {
+.document-content .zoekoverzicht ul {
     margin: 0px;
     padding-left: 13px;
     list-style: square;
     line-height: 21px;
 }
 
-.onderzoek-content table a {
+.document-content table a {
     color: #0096d2;
     font-weight: bold;
     text-decoration: none;
 }
 
-.onderzoek-content table a:hover {
+.document-content table a:hover {
     color: #0096d2;
     text-decoration: underline;
 }
 
-.onderzoek-content .zoekoverzicht {
+.document-content .zoekoverzicht {
     padding: 8px 10px;
 }
 
-.onderzoek-content .icoon ul {
+.document-content .icoon ul {
     margin: 0px;
     padding-left: 25px;
     list-style: square;

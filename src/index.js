@@ -10,8 +10,8 @@ import Footer from './components/footer/Footer';
 import Header from './components/main/Header';
 import Home from './components/home/Home';
 import NotFound from './components/main/NotFound';
-import Onderzoek from './components/onderzoeken/detail/Onderzoek';
-import OnderzoeksList from './components/onderzoeken/main/OnderzoeksList';
+import Document from './components/documents/detail/Document';
+import DocumentList from './components/documents/main/DocumentList';
 
 import './index.css';
 
@@ -25,8 +25,8 @@ const Main = () => {
 
         if (pathname.split("/")[1] === "") {
             setActiveTab("home");
-        } else if (pathname.split("/")[1] === "onderzoeksbank") {
-            setActiveTab("onderzoeken");
+        } else if (pathname.split("/")[1] === "list") {
+            setActiveTab("list");
         } else if (pathname.split("/")[1] === "contact") {
             setActiveTab("contact")
         } else {
@@ -44,11 +44,11 @@ const Main = () => {
                             <Route path="/" exact>
                                 <Home setActiveTab={setActiveTab} />
                             </Route>
-                            <Route exact path="/onderzoeksbank">
-                                <OnderzoeksList setActiveTab={setActiveTab} />
+                            <Route exact path="/list">
+                                <DocumentList setActiveTab={setActiveTab} />
                             </Route>
-                            <Route path="/onderzoeksbank/onderzoek/:onderzoekUUID">
-                                <Onderzoek setActiveTab={setActiveTab} />
+                            <Route path="/list/document/:documentUUID">
+                                <Document setActiveTab={setActiveTab} />
                             </Route>
                             <Route path="/contact">
                                 <Contact setActiveTab={setActiveTab} />

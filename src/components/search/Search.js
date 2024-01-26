@@ -1,13 +1,13 @@
 import React, { useRef, useState } from 'react';
 
 import CreationYearSearch from './advanced/CreationYearSearch'
-import ResearchTypesSearch from './advanced/ResearchTypesSearch';
+import DocumentTypesSearch from './advanced/DocumentTypesSearch';
 import TextSearch from './TextSearch';
 import ThemesSearch from './advanced/ThemesSearch';
 
-const Search = ({setTextFilter, setTypeFilter, setThemeFilter, setCreationYearFilter, themes, researchTypes}) => {
+const Search = ({setTextFilter, setTypeFilter, setThemeFilter, setCreationYearFilter, themes, documentTypes}) => {
     const textRef = useRef(null);
-    const researchTypeRef = useRef(null);
+    const documentTypeRef = useRef(null);
     const themeRef = useRef(null);
     const creationYearRef = useRef(null);
     const [activeTab, setActiveTab] = useState("search");
@@ -17,8 +17,8 @@ const Search = ({setTextFilter, setTypeFilter, setThemeFilter, setCreationYearFi
 
         setTextFilter(textRef.current.value);
 
-        const allResearchTypes = researchTypeRef.current === null || researchTypeRef.current?.value === "all";
-        setTypeFilter(allResearchTypes ? "" : researchTypeRef.current.value);
+        const allDocumentTypes = documentTypeRef.current === null || documentTypeRef.current?.value === "all";
+        setTypeFilter(allDocumentTypes ? "" : documentTypeRef.current.value);
 
         const allThemes = themeRef.current === null || themeRef.current?.value === "all";
         setThemeFilter(allThemes ? "" : themeRef.current.value);
@@ -47,7 +47,7 @@ const Search = ({setTextFilter, setTypeFilter, setThemeFilter, setCreationYearFi
                                             <TextSearch ref={textRef} />
                                             {activeTab === "advanced" &&
                                                 <>
-                                                    <ResearchTypesSearch researchTypes={researchTypes} ref={researchTypeRef} />
+                                                    <DocumentTypesSearch documentTypes={documentTypes} ref={documentTypeRef} />
                                                     <ThemesSearch themes={themes} ref={themeRef} />
                                                     <CreationYearSearch ref={creationYearRef} />
                                                 </>

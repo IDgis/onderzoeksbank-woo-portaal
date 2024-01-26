@@ -2,22 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const Onderzoek = () => {
+const Document = () => {
 
-    const { onderzoekUUID } = useParams();
+    const { documentUUID } = useParams();
     const [record, setRecord] = useState({});
 
     useEffect(async () => {
         const cancelTokenSource = axios.CancelToken.source();
 
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/research/query/${onderzoekUUID}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/${documentUUID}`, {
                 cancelToken: cancelTokenSource.token
             });
 
             setRecord(response.data);
         } catch (err) {
-            console.log("Er ging iets mis met het ophalen van het onderzoek met UUID: ", onderzoekUUID, err);
+            console.log("Er ging iets mis met het ophalen van het document met UUID: ", documentUUID, err);
         }
 
         return () => {
@@ -28,11 +28,11 @@ const Onderzoek = () => {
     return (
         <>
             <div className="content_main">
-                <div className="onderzoeken-laatste">
-                    <h1>Onderzoek Detail</h1>
-                    <Link to="/onderzoeksbank">{"<< Terug naar de zoekresultaten"}</Link>
-                    <div className="print-onderzoek">
-                        <div className="onderzoek-hoofd hoeken_5">
+                <div className="documents-laatste">
+                    <h1>Document Detail</h1>
+                    <Link to="/list">{"<< Terug naar de zoekresultaten"}</Link>
+                    <div className="print-document">
+                        <div className="document-hoofd hoeken_5">
                             <table width="100%" cellSpacing="0" cellPadding="0" border="0">
                                 <tbody>
                                     <tr>
@@ -40,7 +40,7 @@ const Onderzoek = () => {
                                             <ul><li></li></ul>
                                         </td>
                                         <td>
-                                            <Link to={`/onderzoeksbank/onderzoek/${onderzoekUUID}`}>{ record.titel }</Link>
+                                            <Link to={`/list/document/${documentUUID}`}>{ record.titel }</Link>
                                         </td>
                                         <td className="date" width="100">
                                             { new Date(record.datumCreatie).getFullYear().toString() }
@@ -49,7 +49,7 @@ const Onderzoek = () => {
                                 </tbody>
                             </table>
                         </div>
-                        <div className="onderzoek-content">
+                        <div className="document-content">
                             <table width="100%" cellSpacing="1" cellPadding="0">
                                 <tbody>
                                     <tr>
@@ -74,7 +74,7 @@ const Onderzoek = () => {
                                                 {
                                                     record.bijlagen?.map(bijlage =>
                                                         <li key={bijlage.naam}>
-                                                            <a href={`${process.env.REACT_APP_API_HOST}/attachment/${onderzoekUUID}/${bijlage.naam}`} target="_blank">{ bijlage.naam }</a>
+                                                            <a href={`${process.env.REACT_APP_API_HOST}/attachment/${documentUUID}/${bijlage.naam}`} target="_blank">{ bijlage.naam }</a>
                                                         </li>
                                                     )
                                                 }
@@ -108,7 +108,7 @@ const Onderzoek = () => {
                                             <ul><li></li></ul>
                                         </td>
                                         <td className="zoekoverzicht">
-                                            <strong>Type onderzoek</strong>
+                                            <strong>Type document</strong>
                                         </td>
                                         <td className="zoekoverzicht">
                                             { record.typeOnderzoek }
@@ -152,4 +152,4 @@ const Onderzoek = () => {
     );
 }
 
-export default Onderzoek;
+export default Document;
