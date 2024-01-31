@@ -6,9 +6,9 @@ const Header = ({activeTab, setActiveTab}) => (
         <div className="label">Provincie Overijssel</div>
         <div className="overlay"></div>
         <div className="afbeeldingen">
-            <img src="/clouds.png" alt="Onderzoeksbank Provincie Overijssel" title="Onderzoeksbank Provincie Overijssel"/>
+            <img src="/clouds.png" alt={process.env.REACT_APP_TITLE} title={process.env.REACT_APP_TITLE}/>
         </div>
-        <div className="titelbalk">Onderzoeksbank Overijssel</div>
+        <div className="titelbalk">{process.env.REACT_APP_TITLE}</div>
         <div className="navigatie">
             <ul>
                 <li className={activeTab === "home" ? "active" : ""}>
