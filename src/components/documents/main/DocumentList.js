@@ -66,7 +66,7 @@ const DocumentList = () => {
 
         try {
             const offset = (currentPage - 1) * resultsPerPage;
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/search?sort=dateDesc&limit=${resultsPerPage}&offset=${offset}&text=${textFilter}&typeFilter=${typeFilter}&themeFilter=${themeFilter}&creationYear=${creationYearFilter}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/search/${process.env.REACT_APP_TYPE_APP}?sort=dateDesc&limit=${resultsPerPage}&offset=${offset}&text=${textFilter}&typeFilter=${typeFilter}&themeFilter=${themeFilter}&creationYear=${creationYearFilter}`, {
                 cancelToken: cancelTokenSource.token
             });
 

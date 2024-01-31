@@ -10,7 +10,7 @@ const DocumentList = ({setActiveTab}) => {
         const cancelTokenSource = axios.CancelToken.source();
 
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/search?sort=dateDesc&limit=5&offset=0`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/search/${process.env.REACT_APP_TYPE_APP}?sort=dateDesc&limit=5&offset=0`, {
                 cancelToken: cancelTokenSource.token
             });
 
