@@ -11,7 +11,8 @@ const Search = ({setTextFilter, setTypeFilter, setThemeFilter, setCreationYearFi
     const themeRef = useRef(null);
     const creationYearRef = useRef(null);
     const [activeTab, setActiveTab] = useState("search");
-
+    const typeApp = process.env.REACT_APP_TYPE_APP;
+    
     const searchResults = (e) => {
         e.preventDefault();
 
@@ -47,7 +48,7 @@ const Search = ({setTextFilter, setTypeFilter, setThemeFilter, setCreationYearFi
                                             <TextSearch ref={textRef} />
                                             {activeTab === "advanced" &&
                                                 <>
-                                                    <DocumentTypesSearch documentTypes={documentTypes} ref={documentTypeRef} />
+                                                    {typeApp === "ob" && <DocumentTypesSearch documentTypes={documentTypes} ref={documentTypeRef} />}
                                                     <ThemesSearch themes={themes} ref={themeRef} />
                                                     <CreationYearSearch ref={creationYearRef} />
                                                 </>
