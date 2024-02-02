@@ -5,7 +5,7 @@ import DocumentTypesSearch from './advanced/DocumentTypesSearch';
 import TextSearch from './TextSearch';
 import ThemesSearch from './advanced/ThemesSearch';
 
-const Search = ({setTextFilter, setTypeFilter, setThemeFilter, setCreationYearFilter, themes, documentTypes}) => {
+const Search = ({themes, wooThemes, documentTypes, setTextFilter, setTypeFilter, setThemeFilter, setCreationYearFilter}) => {
     const textRef = useRef(null);
     const documentTypeRef = useRef(null);
     const themeRef = useRef(null);
@@ -49,7 +49,7 @@ const Search = ({setTextFilter, setTypeFilter, setThemeFilter, setCreationYearFi
                                             {activeTab === "advanced" &&
                                                 <>
                                                     {typeApp === "ob" && <DocumentTypesSearch documentTypes={documentTypes} ref={documentTypeRef} />}
-                                                    <ThemesSearch themes={themes} ref={themeRef} />
+                                                    <ThemesSearch typeApp={typeApp} themes={themes} wooThemes={wooThemes} ref={themeRef} />
                                                     <CreationYearSearch ref={creationYearRef} />
                                                 </>
                                             }

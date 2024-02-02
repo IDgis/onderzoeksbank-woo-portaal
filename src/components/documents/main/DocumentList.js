@@ -21,6 +21,7 @@ const DocumentList = () => {
 
     const [documentTypes, setDocumentTypes] = useState([]);
     const [themes, setThemes] = useState([]);
+    const [wooThemes, setWooThemes] = useState([]);
 
     // Haal alle type documenten op
     useEffect(async () => {
@@ -53,6 +54,25 @@ const DocumentList = () => {
             setThemes(response.data);
         } catch (err) {
             console.log("Er ging iets mis bij het ophalen van de thema's", err);
+        }
+
+        return () => {
+            cancelTokenSource.cancel();
+        };
+    }, []);
+
+    // Haal alle WOO thema's op
+    useEffect(async () => {
+        const cancelTokenSource = axios.CancelToken.source();
+
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/woothemes`, {
+                cancelToken: cancelTokenSource.token
+            });
+
+            setWooThemes(response.data);
+        } catch (err) {
+            console.log("Er ging iets mis bij het ophalen van de WOO thema's", err);
         }
 
         return () => {
@@ -97,7 +117,7 @@ const DocumentList = () => {
                 </div>
                 <PageNavigation currentPage={currentPage} setCurrentPage={setCurrentPage} maxPages={maxPages} />
             </div>
-            <Search setTextFilter={setTextFilter} themes={themes} documentTypes={documentTypes} setTypeFilter={setTypeFilter} setThemeFilter={setThemeFilter} setCreationYearFilter={setCreationYearFilter} />
+            <Search themes={themes} wooThemes={wooThemes} documentTypes={documentTypes} setTextFilter={setTextFilter} setTypeFilter={setTypeFilter} setThemeFilter={setThemeFilter} setCreationYearFilter={setCreationYearFilter} />
         </>
     );
 };
