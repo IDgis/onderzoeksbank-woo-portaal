@@ -6,12 +6,25 @@ const Document = () => {
 
     const { documentUUID } = useParams();
     const [record, setRecord] = useState({});
+    const typeApp = process.env.REACT_APP_TYPE_APP;
+    const themeTypes = [
+        {
+            type: "ob",
+            label: "Thema's",
+            key: "themas"
+        },
+        {
+            type: "woo",
+            label: "WOO thema's",
+            key: "wooThemas"
+        }
+    ]
 
     useEffect(async () => {
         const cancelTokenSource = axios.CancelToken.source();
 
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/${documentUUID}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/${typeApp}/${documentUUID}`, {
                 cancelToken: cancelTokenSource.token
             });
 
@@ -67,7 +80,7 @@ const Document = () => {
                                             <ul><li></li></ul>
                                         </td>
                                         <td className="zoekoverzicht">
-                                            <strong>Rapporten</strong>
+                                            <strong>Bijlagen</strong>
                                         </td>
                                         <td className="zoekoverzicht">
                                             <ul>
@@ -103,34 +116,41 @@ const Document = () => {
                                             { record.eindverantwoordelijke }
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td className="icoon" width="20" align="center">
-                                            <ul><li></li></ul>
-                                        </td>
-                                        <td className="zoekoverzicht">
-                                            <strong>Type document</strong>
-                                        </td>
-                                        <td className="zoekoverzicht">
-                                            { record.typeOnderzoek }
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="icoon" width="20" align="center">
-                                            <ul><li></li></ul>
-                                        </td>
-                                        <td className="zoekoverzicht">
-                                            <strong>Thema's</strong>
-                                        </td>
-                                        <td className="zoekoverzicht">
-                                            <ul>
-                                                {
-                                                    record.themas?.map(thema =>
-                                                        <li key={thema}>{ thema }</li>
-                                                    )
-                                                }
-                                            </ul>
-                                        </td>
-                                    </tr>
+                                    { typeApp === 'ob' &&
+                                        <tr>
+                                            <td className="icoon" width="20" align="center">
+                                                <ul><li></li></ul>
+                                            </td>
+                                            <td className="zoekoverzicht">
+                                                <strong>Type document</strong>
+                                            </td>
+                                            <td className="zoekoverzicht">
+                                                { record.typeOnderzoek }
+                                            </td>
+                                        </tr>
+                                    }
+                                    {
+                                        themeTypes?.map(themeType => 
+                                            typeApp === themeType.type &&
+                                                <tr key={themeType.key}>
+                                                    <td className="icoon" width="20" align="center">
+                                                        <ul><li></li></ul>
+                                                    </td>
+                                                    <td className="zoekoverzicht">
+                                                        <strong>{themeType.label}</strong>
+                                                    </td>
+                                                    <td className="zoekoverzicht">
+                                                        <ul>
+                                                            {
+                                                                record[themeType.key]?.map(item =>
+                                                                    <li key={item}>{ item }</li>
+                                                                )
+                                                            }
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                        )
+                                    }
                                     <tr>
                                         <td className="icoon" width="20" align="center">
                                             <ul><li></li></ul>
