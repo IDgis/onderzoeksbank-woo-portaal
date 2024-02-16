@@ -1,24 +1,25 @@
 import React, { useRef, useState } from 'react';
 
 import CreationYearSearch from './advanced/CreationYearSearch'
-import ResearchTypesSearch from './advanced/ResearchTypesSearch';
+import DocumentTypesSearch from './advanced/DocumentTypesSearch';
 import TextSearch from './TextSearch';
 import ThemesSearch from './advanced/ThemesSearch';
 
-const Search = ({setTextFilter, setTypeFilter, setThemeFilter, setCreationYearFilter, themes, researchTypes}) => {
+const Search = ({themes, wooThemes, documentTypes, setTextFilter, setTypeFilter, setThemeFilter, setCreationYearFilter}) => {
     const textRef = useRef(null);
-    const researchTypeRef = useRef(null);
+    const documentTypeRef = useRef(null);
     const themeRef = useRef(null);
     const creationYearRef = useRef(null);
     const [activeTab, setActiveTab] = useState("search");
-
+    const typeApp = process.env.REACT_APP_TYPE_APP;
+    
     const searchResults = (e) => {
         e.preventDefault();
 
         setTextFilter(textRef.current.value);
 
-        const allResearchTypes = researchTypeRef.current === null || researchTypeRef.current?.value === "all";
-        setTypeFilter(allResearchTypes ? "" : researchTypeRef.current.value);
+        const allDocumentTypes = documentTypeRef.current === null || documentTypeRef.current?.value === "all";
+        setTypeFilter(allDocumentTypes ? "" : documentTypeRef.current.value);
 
         const allThemes = themeRef.current === null || themeRef.current?.value === "all";
         setThemeFilter(allThemes ? "" : themeRef.current.value);
@@ -47,8 +48,8 @@ const Search = ({setTextFilter, setTypeFilter, setThemeFilter, setCreationYearFi
                                             <TextSearch ref={textRef} />
                                             {activeTab === "advanced" &&
                                                 <>
-                                                    <ResearchTypesSearch researchTypes={researchTypes} ref={researchTypeRef} />
-                                                    <ThemesSearch themes={themes} ref={themeRef} />
+                                                    {typeApp === "ob" && <DocumentTypesSearch documentTypes={documentTypes} ref={documentTypeRef} />}
+                                                    <ThemesSearch typeApp={typeApp} themes={themes} wooThemes={wooThemes} ref={themeRef} />
                                                     <CreationYearSearch ref={creationYearRef} />
                                                 </>
                                             }
