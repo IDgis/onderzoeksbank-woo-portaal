@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => (
     <div id="footer" className="content_footer">
         <div className="copyright">
-            <Link to="/">Onderzoeksbank Provincie Overijssel</Link>
+            <Link to="/">{process.env.REACT_APP_TITLE}</Link>
         </div>
         <div className="menu">
             <ul>

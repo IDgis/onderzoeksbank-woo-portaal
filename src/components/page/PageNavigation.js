@@ -32,16 +32,16 @@ const PageNavigation = ({currentPage, setCurrentPage, maxPages}) => {
             <nav>
                 <ul className="pager">
                     <li className={isGetFirstPageEnabled() ? "" : "disabled paging-disabled"}>
-                        <Link className="js-nav-button" to="/onderzoeksbank" onClick={getFirstPage}>Eerste pagina</Link>&nbsp;
+                        <Link className="js-nav-button" to="/list" onClick={getFirstPage}>Eerste pagina</Link>&nbsp;
                     </li>
                     <li className={isGetFirstPageEnabled() ? "" : "disabled paging-disabled"}>
-                        <Link className="js-nav-button" to="/onderzoeksbank" onClick={getPreviousPage}>Vorige pagina</Link>&nbsp;
+                        <Link className="js-nav-button" to="/list" onClick={getPreviousPage}>Vorige pagina</Link>&nbsp;
                     </li>
                     <li className={isGetLastPageEnabled() ? "" : "disabled paging-disabled"}>
-                        <Link className="js-nav-button" to="/onderzoeksbank" onClick={getNextPage}>Volgende pagina</Link>&nbsp;
+                        <Link className="js-nav-button" to="/list" onClick={getNextPage}>Volgende pagina</Link>&nbsp;
                     </li>
                     <li className={isGetLastPageEnabled() ? "" : "disabled paging-disabled"}>
-                        <Link className="js-nav-button" to="/onderzoeksbank" onClick={getLastPage}>Laatste pagina ({ maxPages })</Link>
+                        <Link className="js-nav-button" to="/list" onClick={getLastPage}>Laatste pagina ({ maxPages })</Link>
                     </li>
                 </ul>
             </nav>

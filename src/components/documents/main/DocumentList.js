@@ -4,13 +4,13 @@ import axios from 'axios';
 import PageInformation from '../../page/PageInformation';
 import PageNavigation from '../../page/PageNavigation';
 import Search from '../../search/Search';
-import Onderzoek from './Onderzoek';
+import Document from './Document';
 
-const OnderzoeksList = () => {
+const DocumentList = () => {
 
     const resultsPerPage = 15;
 
-    const [researches, setResearches] = useState({});
+    const [documents, setDocuments] = useState({});
     const [numResults, setNumResults] = useState(0);
     const [maxPages, setMaxPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
@@ -19,21 +19,22 @@ const OnderzoeksList = () => {
     const [themeFilter, setThemeFilter] = useState("");
     const [creationYearFilter, setCreationYearFilter] = useState(0);
 
-    const [researchTypes, setResearchTypes] = useState([]);
+    const [documentTypes, setDocumentTypes] = useState([]);
     const [themes, setThemes] = useState([]);
+    const [wooThemes, setWooThemes] = useState([]);
 
-    // Haal alle typen onderzoek op
+    // Haal alle type documenten op
     useEffect(async () => {
         const cancelTokenSource = axios.CancelToken.source();
 
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/research/types`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/types`, {
                 cancelToken: cancelTokenSource.token
             });
 
-            setResearchTypes(response.data);
+            setDocumentTypes(response.data);
         } catch (err) {
-            console.log("Er ging iets mis bij het ophalen van de typen onderzoeken", err);
+            console.log("Er ging iets mis bij het ophalen van de typen documenten", err);
         }
 
         return () => {
@@ -46,7 +47,7 @@ const OnderzoeksList = () => {
         const cancelTokenSource = axios.CancelToken.source();
 
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/research/themes`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/themes`, {
                 cancelToken: cancelTokenSource.token
             });
 
@@ -60,22 +61,41 @@ const OnderzoeksList = () => {
         };
     }, []);
 
-    // Haal alle gevraagde onderzoeken op
+    // Haal alle WOO thema's op
+    useEffect(async () => {
+        const cancelTokenSource = axios.CancelToken.source();
+
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/woothemes`, {
+                cancelToken: cancelTokenSource.token
+            });
+
+            setWooThemes(response.data);
+        } catch (err) {
+            console.log("Er ging iets mis bij het ophalen van de WOO thema's", err);
+        }
+
+        return () => {
+            cancelTokenSource.cancel();
+        };
+    }, []);
+
+    // Haal alle gevraagde documenten op
     useEffect(async () => {
         const cancelTokenSource = axios.CancelToken.source();
 
         try {
             const offset = (currentPage - 1) * resultsPerPage;
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/research/query?sort=dateDesc&limit=${resultsPerPage}&offset=${offset}&text=${textFilter}&typeFilter=${typeFilter}&themeFilter=${themeFilter}&creationYear=${creationYearFilter}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/search/${process.env.REACT_APP_TYPE_APP}?sort=dateDesc&limit=${resultsPerPage}&offset=${offset}&text=${textFilter}&typeFilter=${typeFilter}&themeFilter=${themeFilter}&creationYear=${creationYearFilter}`, {
                 cancelToken: cancelTokenSource.token
             });
 
-            setResearches(response.data);
+            setDocuments(response.data);
             setNumResults(response.data.count);
             setMaxPages(Math.ceil(response.data.count / resultsPerPage));
             setCurrentPage(offset / resultsPerPage + 1);
         } catch (err) {
-            console.log("Er ging iets mis bij het ophalen van de onderzoeken", err);
+            console.log("Er ging iets mis bij het ophalen van de documenten", err);
         }
 
         return () => {
@@ -86,20 +106,20 @@ const OnderzoeksList = () => {
     return (
         <>
             <div className="content_main">
-                <div className="onderzoeken-laatste">
-                    <h1>Laatst uitgevoerde onderzoeken</h1>
+                <div className="documents-laatste">
+                    <h1>Laatst uitgevoerde documenten</h1>
                     <PageInformation numResults={numResults} currentPage={currentPage} />
                     {
-                        researches.records?.map(record => 
-                            <Onderzoek record={record} key={record.uuid} />
+                        documents.records?.map(record => 
+                            <Document record={record} key={record.uuid} />
                         )
                     }
                 </div>
                 <PageNavigation currentPage={currentPage} setCurrentPage={setCurrentPage} maxPages={maxPages} />
             </div>
-            <Search setTextFilter={setTextFilter} themes={themes} researchTypes={researchTypes} setTypeFilter={setTypeFilter} setThemeFilter={setThemeFilter} setCreationYearFilter={setCreationYearFilter} />
+            <Search themes={themes} wooThemes={wooThemes} documentTypes={documentTypes} setTextFilter={setTextFilter} setTypeFilter={setTypeFilter} setThemeFilter={setThemeFilter} setCreationYearFilter={setCreationYearFilter} />
         </>
     );
 };
 
-export default OnderzoeksList;
+export default DocumentList;

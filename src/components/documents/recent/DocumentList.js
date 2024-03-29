@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Onderzoek from './Onderzoek';
+import Document from './Document';
 
-const OnderzoeksList = ({setActiveTab}) => {
+const DocumentList = ({setActiveTab}) => {
 
-    const [researches, setResearches] = useState({});
+    const [documents, setDocuments] = useState({});
 
     useEffect(async () => {
         const cancelTokenSource = axios.CancelToken.source();
 
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/research/query?sort=dateDesc&limit=5&offset=0`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/search/${process.env.REACT_APP_TYPE_APP}?sort=dateDesc&limit=5&offset=0`, {
                 cancelToken: cancelTokenSource.token
             });
 
-            setResearches(response.data);
+            setDocuments(response.data);
         } catch (err) {
             console.log(err);
         }
@@ -37,8 +37,8 @@ const OnderzoeksList = ({setActiveTab}) => {
                         <div id="laatst_toegevoegd" className="tabblad actief">
                             <ul>
                                 {
-                                    researches.records?.map((record, i) =>
-                                        <Onderzoek record={record} setActiveTab={setActiveTab} index={i} key={record.uuid} />
+                                    documents.records?.map((record, i) =>
+                                        <Document record={record} setActiveTab={setActiveTab} index={i} key={record.uuid} />
                                     )
                                 }
                             </ul>
@@ -50,4 +50,4 @@ const OnderzoeksList = ({setActiveTab}) => {
     );
 };
 
-export default OnderzoeksList;
+export default DocumentList;
