@@ -87,7 +87,7 @@ const Document = () => {
                                                 {
                                                     record.bijlagen?.map(bijlage =>
                                                         <li key={bijlage.naam}>
-                                                            <a href={`${process.env.REACT_APP_API_HOST}/attachment/${documentUUID}/${bijlage.naam}`} target="_blank">{ bijlage.naam }</a>
+                                                            <a href={`${process.env.REACT_APP_PUBLIC_PORTAL_HOST}/attachment/${documentUUID}/${bijlage.naam}`} target="_blank">{ bijlage.naam }</a>
                                                         </li>
                                                     )
                                                 }
