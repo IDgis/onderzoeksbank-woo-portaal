@@ -34,6 +34,19 @@ const Main = () => {
         }
     }, []);
 
+    useEffect(() => {
+        if (process.env.REACT_APP_DISPLAY_STATS_ANALYTICS === 'true') {
+            const script = document.createElement("script");
+            script.async = true;
+            script.src = "https://siteimproveanalytics.com/js/siteanalyze_6011273.js";
+            document.body.appendChild(script);
+
+            return () => {
+                document.body.removeChild(script);
+            };
+        }
+    }, []);
+
     return (
         <div className={`body-normal ${process.env.REACT_APP_DEPLOYMENT_ACCEPTANCE === 'true' ? 'body-acceptance' : ''}`}>
             <div id="wrapper">
