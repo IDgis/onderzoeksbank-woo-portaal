@@ -27,7 +27,6 @@ const Document = () => {
             const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/${typeApp}/${documentUUID}`, {
                 cancelToken: cancelTokenSource.token
             });
-
             setRecord(response.data);
         } catch (err) {
             console.log("Er ging iets mis met het ophalen van het document met UUID: ", documentUUID, err);
@@ -142,7 +141,7 @@ const Document = () => {
                                                     <td className="zoekoverzicht">
                                                         <ul>
                                                             {
-                                                                record[themeType.key]?.map(item =>
+                                                                record[themeType.key]?.sort().map(item =>
                                                                     <li key={item}>{ item }</li>
                                                                 )
                                                             }
