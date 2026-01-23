@@ -69,7 +69,7 @@ const Document = () => {
                                             <ul style={{position:"absolute",top:"15px"}}><li></li></ul>
                                         </td>
                                         <td className="zoekoverzicht" colSpan="2">
-                                            <strong>Samenvatting:</strong>
+                                            <b>Samenvatting:</b>
                                             <p></p>
                                             <p>{ record.omschrijving }</p>
                                         </td>
@@ -79,7 +79,7 @@ const Document = () => {
                                             <ul><li></li></ul>
                                         </td>
                                         <td className="zoekoverzicht">
-                                            <strong>Bijlagen</strong>
+                                            <b>Bijlagen</b>
                                         </td>
                                         <td className="zoekoverzicht">
                                             <ul>
@@ -98,7 +98,7 @@ const Document = () => {
                                             <ul><li></li></ul>
                                         </td>
                                         <td className="zoekoverzicht">
-                                            <strong>Creatie jaar</strong>
+                                            <b>Creatie jaar</b>
                                         </td>
                                         <td className="zoekoverzicht">
                                             { new Date(record.datumCreatie).getFullYear().toString() }
@@ -109,7 +109,7 @@ const Document = () => {
                                             <ul><li></li></ul>
                                         </td>
                                         <td className="zoekoverzicht">
-                                            <strong>Eindverantwoordelijke</strong>
+                                            <b>Eindverantwoordelijke</b>
                                         </td>
                                         <td className="zoekoverzicht">
                                             { record.eindverantwoordelijke }
@@ -121,7 +121,7 @@ const Document = () => {
                                                 <ul><li></li></ul>
                                             </td>
                                             <td className="zoekoverzicht">
-                                                <strong>Type document</strong>
+                                                <b>Type document</b>
                                             </td>
                                             <td className="zoekoverzicht">
                                                 { record.typeOnderzoek }
@@ -136,7 +136,7 @@ const Document = () => {
                                                         <ul><li></li></ul>
                                                     </td>
                                                     <td className="zoekoverzicht">
-                                                        <strong>{themeType.label}</strong>
+                                                        <b>{themeType.label}</b>
                                                     </td>
                                                     <td className="zoekoverzicht">
                                                         <ul>
@@ -155,7 +155,7 @@ const Document = () => {
                                             <ul><li></li></ul>
                                         </td>
                                         <td className="zoekoverzicht">
-                                            <strong>Gebruiksrestricties</strong>
+                                            <b>Gebruiksrestricties</b>
                                         </td>
                                         <td className="zoekoverzicht">
                                             { record.gebruiksrestricties }
