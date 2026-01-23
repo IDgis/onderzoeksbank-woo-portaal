@@ -505,7 +505,7 @@ strong {
 }
 
 #nav .pager .disabled a {
-    color: #777;
+    color: #666;
     cursor: not-allowed;
     background-color: #fff;
 }
