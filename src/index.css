@@ -339,7 +339,7 @@ strong {
 
 #zoeken_widget .tabbladen {
     padding: 5px 0px 5px 0px;
-    background-color: #999;
+    background-color: #d4d4d4;
 }
 
 #zoeken_widget .tabblad {
@@ -363,7 +363,7 @@ strong {
 #zoeken_widget .advanced_search label {
     display: block;
     font-size: 12px;
-    color: #fff;
+    color: #2f2f2f;
     margin-bottom: 5px;
 }
 
