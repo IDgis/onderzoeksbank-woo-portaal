@@ -25,6 +25,8 @@ const DocumentList = () => {
 
     // Haal alle type documenten op
     useEffect(async () => {
+        document.title = `Documenten | ${process.env.REACT_APP_TITLE}`;
+
         const cancelTokenSource = axios.CancelToken.source();
 
         try {

@@ -37,6 +37,10 @@ const Document = () => {
         };
     }, []);
 
+    useEffect(async () => {
+        document.title = `${record.titel} | ${process.env.REACT_APP_TITLE}`;
+    }, [record]);
+
     return (
         <>
             <div className="content_main">
@@ -169,6 +173,6 @@ const Document = () => {
             </div>
         </>
     );
-}
+};
 
 export default Document;
