@@ -180,13 +180,14 @@ strong {
 }
 
 #header .navigatie ul li.active a {
-    background-color: #0096d2;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
     text-decoration: none;
     cursor: default;
 }
 
 #header .navigatie ul li a:hover {
-    background-color: #0096d2;
     text-decoration: none;
 }
 
@@ -291,7 +292,7 @@ strong {
 }
 
 #nieuws_widget .tabkoppen .tab.actief {
-    background-color: #0096d2;
+    background-color: #255c9f;
     color: #fff;
     cursor: default;
 }
@@ -320,7 +321,7 @@ strong {
 
 #nieuws_widget .tabblad ul li a:hover {
     text-decoration: underline;
-    color: #0096d2;
+    color: #255c9f;
 }
 
 #nieuws_widget .tabblad ul li a {
@@ -356,7 +357,7 @@ strong {
 }
 
 #zoeken_widget .tabkoppen .tab.actief {
-    background-color: #0096d2;
+    background-color: #255c9f;
     color: #fff;
     cursor: default;
 }
@@ -427,7 +428,7 @@ strong {
 
 .document-hoofd a:hover {
     text-decoration: underline;
-    color: #0096d2;
+    color: #255c9f;
 }
 
 .document-hoofd .date {
@@ -478,7 +479,6 @@ strong {
 }
 
 .document-content table a:hover {
-    color: #0096d2;
     text-decoration: underline;
 }
 
