@@ -7,6 +7,7 @@ const Document = () => {
     const { documentUUID } = useParams();
     const [record, setRecord] = useState({});
     const typeApp = process.env.REACT_APP_TYPE_APP;
+    const typeAccess = process.env.REACT_APP_TYPE_ACCESS;
     const themeTypes = [
         {
             type: "ob",
@@ -24,7 +25,7 @@ const Document = () => {
         const cancelTokenSource = axios.CancelToken.source();
 
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/${typeApp}/${documentUUID}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/${typeApp}/${typeAccess}/${documentUUID}`, {
                 cancelToken: cancelTokenSource.token
             });
             setRecord(response.data);

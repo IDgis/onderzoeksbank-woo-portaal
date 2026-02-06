@@ -5,12 +5,14 @@ import Document from './Document';
 const DocumentList = ({setActiveTab}) => {
 
     const [documents, setDocuments] = useState({});
+    const typeApp = process.env.REACT_APP_TYPE_APP;
+    const typeAccess = process.env.REACT_APP_TYPE_ACCESS;
 
     useEffect(async () => {
         const cancelTokenSource = axios.CancelToken.source();
 
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/search/${process.env.REACT_APP_TYPE_APP}?sort=dateDesc&limit=5&offset=0`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/search/${typeApp}/${typeAccess}?sort=dateDesc&limit=5&offset=0`, {
                 cancelToken: cancelTokenSource.token
             });
 
