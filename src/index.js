@@ -49,9 +49,12 @@ const Main = () => {
 
     return (
         <div className={`body-normal ${process.env.REACT_APP_DEPLOYMENT_ACCEPTANCE === 'true' ? 'body-acceptance' : ''}`}>
+            <a href="#content" className="sr-only sr-only-focusable">
+                Direct naar hoofdinhoud
+            </a>
             <div id="wrapper">
                 <Header activeTab={activeTab} setActiveTab={setActiveTab} />
-                <div id="content" className="content">
+                <div id="content" className="content" tabIndex="-1">
                     <div className="dummy">
                         <Switch>
                             <Route path="/" exact>
