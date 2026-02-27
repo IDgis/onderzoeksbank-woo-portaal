@@ -5,6 +5,10 @@ html, body, div {
     outline: 0;
 }
 
+:focus-visible {
+    outline: -webkit-focus-ring-color auto 1px;
+}
+
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 13px;
