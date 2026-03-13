@@ -22,9 +22,13 @@ const DocumentList = () => {
     const [documentTypes, setDocumentTypes] = useState([]);
     const [themes, setThemes] = useState([]);
     const [wooThemes, setWooThemes] = useState([]);
+    const typeApp = process.env.REACT_APP_TYPE_APP;
+    const typeAccess = process.env.REACT_APP_TYPE_ACCESS;
 
     // Haal alle type documenten op
     useEffect(async () => {
+        document.title = `Documenten | ${process.env.REACT_APP_TITLE}`;
+
         const cancelTokenSource = axios.CancelToken.source();
 
         try {
@@ -86,7 +90,7 @@ const DocumentList = () => {
 
         try {
             const offset = (currentPage - 1) * resultsPerPage;
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/search/${process.env.REACT_APP_TYPE_APP}?sort=dateDesc&limit=${resultsPerPage}&offset=${offset}&text=${textFilter}&typeFilter=${typeFilter}&themeFilter=${themeFilter}&creationYear=${creationYearFilter}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/search/${typeApp}/${typeAccess}?sort=dateDesc&limit=${resultsPerPage}&offset=${offset}&text=${textFilter}&typeFilter=${typeFilter}&themeFilter=${themeFilter}&creationYear=${creationYearFilter}`, {
                 cancelToken: cancelTokenSource.token
             });
 

@@ -56,7 +56,7 @@ const Search = ({themes, wooThemes, documentTypes, setTextFilter, setTypeFilter,
                                         </tbody>
                                     </table>
                                     <button className="button" type="submit">
-                                        Zoeken <img src="/search.png" width="10px" />
+                                        Zoeken <img src="/search.png" alt="" width="10px" />
                                     </button>
                                 </form>
                             </div>

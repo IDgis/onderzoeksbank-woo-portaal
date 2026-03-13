@@ -7,6 +7,7 @@ const Document = () => {
     const { documentUUID } = useParams();
     const [record, setRecord] = useState({});
     const typeApp = process.env.REACT_APP_TYPE_APP;
+    const typeAccess = process.env.REACT_APP_TYPE_ACCESS;
     const themeTypes = [
         {
             type: "ob",
@@ -24,10 +25,9 @@ const Document = () => {
         const cancelTokenSource = axios.CancelToken.source();
 
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/${typeApp}/${documentUUID}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_HOST}/api/document/${typeApp}/${typeAccess}/${documentUUID}`, {
                 cancelToken: cancelTokenSource.token
             });
-
             setRecord(response.data);
         } catch (err) {
             console.log("Er ging iets mis met het ophalen van het document met UUID: ", documentUUID, err);
@@ -37,6 +37,10 @@ const Document = () => {
             cancelTokenSource.cancel();
         };
     }, []);
+
+    useEffect(async () => {
+        document.title = `${record.titel} | ${process.env.REACT_APP_TITLE}`;
+    }, [record]);
 
     return (
         <>
@@ -70,7 +74,7 @@ const Document = () => {
                                             <ul style={{position:"absolute",top:"15px"}}><li></li></ul>
                                         </td>
                                         <td className="zoekoverzicht" colSpan="2">
-                                            <strong>Samenvatting:</strong>
+                                            <b>Samenvatting:</b>
                                             <p></p>
                                             <p>{ record.omschrijving }</p>
                                         </td>
@@ -80,7 +84,7 @@ const Document = () => {
                                             <ul><li></li></ul>
                                         </td>
                                         <td className="zoekoverzicht">
-                                            <strong>Bijlagen</strong>
+                                            <b>Bijlagen</b>
                                         </td>
                                         <td className="zoekoverzicht">
                                             <ul>
@@ -99,7 +103,7 @@ const Document = () => {
                                             <ul><li></li></ul>
                                         </td>
                                         <td className="zoekoverzicht">
-                                            <strong>Creatie jaar</strong>
+                                            <b>Creatie jaar</b>
                                         </td>
                                         <td className="zoekoverzicht">
                                             { new Date(record.datumCreatie).getFullYear().toString() }
@@ -110,7 +114,7 @@ const Document = () => {
                                             <ul><li></li></ul>
                                         </td>
                                         <td className="zoekoverzicht">
-                                            <strong>Eindverantwoordelijke</strong>
+                                            <b>Eindverantwoordelijke</b>
                                         </td>
                                         <td className="zoekoverzicht">
                                             { record.eindverantwoordelijke }
@@ -122,7 +126,7 @@ const Document = () => {
                                                 <ul><li></li></ul>
                                             </td>
                                             <td className="zoekoverzicht">
-                                                <strong>Type document</strong>
+                                                <b>Type document</b>
                                             </td>
                                             <td className="zoekoverzicht">
                                                 { record.typeOnderzoek }
@@ -137,12 +141,12 @@ const Document = () => {
                                                         <ul><li></li></ul>
                                                     </td>
                                                     <td className="zoekoverzicht">
-                                                        <strong>{themeType.label}</strong>
+                                                        <b>{themeType.label}</b>
                                                     </td>
                                                     <td className="zoekoverzicht">
                                                         <ul>
                                                             {
-                                                                record[themeType.key]?.map(item =>
+                                                                record[themeType.key]?.sort().map(item =>
                                                                     <li key={item}>{ item }</li>
                                                                 )
                                                             }
@@ -156,7 +160,7 @@ const Document = () => {
                                             <ul><li></li></ul>
                                         </td>
                                         <td className="zoekoverzicht">
-                                            <strong>Gebruiksrestricties</strong>
+                                            <b>Gebruiksrestricties</b>
                                         </td>
                                         <td className="zoekoverzicht">
                                             { record.gebruiksrestricties }
@@ -170,6 +174,6 @@ const Document = () => {
             </div>
         </>
     );
-}
+};
 
 export default Document;
